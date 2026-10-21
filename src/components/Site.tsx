@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ScrollToTop from "@/components/ScrollToTop";
 import ServicesThread from "@/components/ServicesThread";
@@ -7,7 +8,7 @@ const msg = (text: string) => `https://wa.me/${WA}?text=${encodeURIComponent(tex
 
 export function Logo({ light = false }: { light?: boolean }) {
   return <Link href="/" className={`brand ${light ? "brand-light" : ""}`} aria-label="Subleva Textil, inicio">
-    <span className="brand-image"><img src="/brand/subleva-logo.svg" alt="Subleva Textil" /></span>
+    <span className="brand-image"><Image src="/brand/subleva-logo.svg" alt="Subleva Textil" width={519} height={285} /></span>
   </Link>;
 }
 
@@ -72,7 +73,7 @@ export function HomePage() {
         ].map(([id,alt],i)=><div key={id+i} className={`orbit-photo orbit-photo-${i+1}`} style={{backgroundImage:`url(https://images.unsplash.com/${id}?auto=format&fit=crop&w=2000&q=90)`}} role="img" aria-label={alt}/>)}
       </div>
       <div className="hero-core">
-        <div className="hero-monogram"><img src="/brand/subleva-logo.svg" alt="Subleva Textil"/><span>✳</span></div>
+        <div className="hero-monogram"><Image src="/brand/subleva-logo.svg" alt="Subleva Textil" width={519} height={285} /><span>✳</span></div>
         <p className="hero-coop">COOPERATIVA TEXTIL</p><p className="hero-location">SAN MARTÍN · BUENOS AIRES</p>
         <h1>Todo vuelve:<br/><em>los materiales,</em><br/>los saberes,<br/>el trabajo.</h1>
         <p className="hero-description">Diseño y producción textil con compromiso social y ambiental.</p>
