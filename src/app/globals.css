@@ -262,3 +262,16 @@ body{font-family:Montserrat,Arial,Helvetica,sans-serif}
  .hero-bottom{width:100%;min-width:0;flex-wrap:wrap;white-space:normal;justify-content:center;gap:8px 14px}
  .workshop-card:hover{transform:none}
 }
+
+/* Navegación móvil visible y accesible: ninguna sección queda escondida */
+.mobile-nav{display:none}
+@media(max-width:760px){
+ .site-header{height:auto;min-height:68px;flex-wrap:wrap;padding:10px 16px 0;row-gap:8px}
+ .site-header>.brand{order:1;flex:1 1 auto;min-width:0}
+ .site-header>.header-cta{order:2;flex:0 0 auto}
+ .site-header>.mobile-nav{order:3;display:flex;flex:0 0 calc(100% + 32px);width:calc(100% + 32px);margin:0 -16px;padding:0 16px 10px;gap:19px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;border-top:1px solid #25232212}
+ .mobile-nav::-webkit-scrollbar{display:none}
+ .mobile-nav a{flex:0 0 auto;padding:10px 0 2px;font-size:10px;font-weight:800;letter-spacing:.04em;white-space:nowrap}
+ .mobile-nav a:focus-visible{outline-offset:1px}
+ html{scroll-padding-top:112px}
+}
