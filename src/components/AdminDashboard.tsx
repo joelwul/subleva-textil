@@ -28,7 +28,6 @@ export default function AdminDashboard(){
   } catch {
     // Ignore malformed local demo data and keep the seed content.
   }
-  // eslint-disable-next-line react-hooks/set-state-in-effect -- prevent persistence before the first browser read completes
   setReady(true);
 }, []);
  useEffect(()=>{if(ready)localStorage.setItem(storageKey,JSON.stringify(data))},[data,ready]);
