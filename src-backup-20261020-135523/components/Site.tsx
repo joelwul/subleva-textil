@@ -1,0 +1,114 @@
+import Link from "next/link";
+import ScrollToTop from "@/components/ScrollToTop";
+
+const WA = "5491124078491";
+const msg = (text: string) => `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+
+export function Logo({ light = false }: { light?: boolean }) {
+  return <Link href="/" className={`brand ${light ? "brand-light" : ""}`} aria-label="Subleva Textil, inicio">
+    <span className="brand-image"><img src="/brand/subleva-logo.svg" alt="Subleva Textil" /></span>
+  </Link>;
+}
+
+export function Header() {
+  return <header className="site-header">
+    <Logo />
+    <nav className="desktop-nav" aria-label="Navegación principal">
+      <Link href="/quienes-somos">Quiénes somos</Link><Link href="/productos">Productos</Link>
+      <Link href="/talleres">Talleres</Link><Link href="/servicios">Servicios</Link>
+      <Link href="/coworking">Coworking</Link><Link href="/punto-verde-textil">Punto Verde Textil</Link>
+    </nav>
+    <a className="button button-dark header-cta" href={msg("Hola, quisiera conocer más sobre Subleva Textil.")} target="_blank" rel="noreferrer">Escribinos <span>↗</span></a>
+  </header>;
+}
+
+export function Footer() {
+  return <footer className="site-footer">
+    <div className="footer-main">
+      <div><Logo light /><p>Diseño · Producción · Comunidad</p></div>
+      <div><h3>Encontranos</h3><p>Córdoba 3420, San Andrés<br/>San Martín, Buenos Aires</p><a href={msg("Hola, Cele. Quisiera consultar por Subleva Textil.")} target="_blank" rel="noreferrer">11 2407-8491 · Cele</a><a href={msg("Hola, Sol. Quisiera consultar por Subleva Textil.").replace("5491124078491","5491123986949")} target="_blank" rel="noreferrer">11 2398-6949 · Sol</a><a href="mailto:sublevatextil@gmail.com">sublevatextil@gmail.com</a></div>
+      <div><h3>Explorá</h3><Link href="/quienes-somos">Quiénes somos</Link><Link href="/productos">Productos</Link><Link href="/talleres">Talleres</Link><Link href="/servicios">Servicios</Link><Link href="/coworking">Coworking</Link><Link href="/punto-verde-textil">Punto Verde Textil</Link></div>
+      <div><h3>Instagram</h3><a href="https://www.instagram.com/subleva_textil/" target="_blank" rel="noreferrer">@subleva_textil ↗</a><p>Trabajo cooperativo, producción consciente y comunidad.</p></div>
+    </div>
+    <div className="footer-bottom"><span>© 2026 Subleva Textil</span><span>Una cooperativa de diseño y producción textil.</span><a href="mailto:sublevatextil@gmail.com?subject=Consulta%20sobre%20privacidad">Privacidad y consultas</a></div>
+    <div className="bp-credit"><span>Sitio web desarrollado por</span><a href="https://buenpuerto.online" target="_blank" rel="noreferrer" aria-label="Buen Puerto, donde lo digital y presencial se encuentran"><span className="bp-mark" aria-hidden="true"><i>BP</i><b>↗</b></span><span className="bp-copy"><strong>BUEN PUERTO</strong><small>Donde lo digital y presencial se encuentran.</small></span></a></div>
+  </footer>;
+}
+
+export function Shell({ children }: { children: React.ReactNode }) {
+  return <><ScrollToTop/><Header/>{children}<Footer/></>;
+}
+
+const doors = [
+  { n:"01", title:"Aprender", desc:"Compartir saberes, probar técnicas y hacer con tus manos.", href:"/talleres", className:"door-lilac", symbol:"✳" },
+  { n:"02", title:"Producir", desc:"Llevar una idea textil del primer boceto a la producción.", href:"/servicios", className:"door-sand", symbol:"⌁" },
+  { n:"03", title:"Trabajar en el taller", desc:"Un espacio equipado para desarrollar tus proyectos.", href:"/coworking", className:"door-dark", symbol:"▤" },
+  { n:"04", title:"Devolver textiles", desc:"Dar una nueva oportunidad a materiales y recursos.", href:"/punto-verde-textil", className:"door-sage", symbol:"↻" },
+  { n:"05", title:"Comprar", desc:"Conocé Revuelo y Maqui: diseño con otra historia.", href:"/productos", className:"door-lilac", symbol:"◯" },
+];
+
+const cards = [
+  { id:"talleres", eyebrow:"COMPARTIR SABERES", title:"Aprender haciendo.", text:"Talleres para desarrollar técnicas, ganar confianza y compartir el hacer.", href:"/talleres", cta:"Explorar talleres", image:"https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1100&q=85" },
+  { id:"productos", eyebrow:"HECHO CON INTENCIÓN", title:"Objetos con otra historia.", text:"Revuelo y Maqui: dos caminos para pensar los materiales, el diseño y la producción.", href:"/productos", cta:"Ver productos", image:"https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=1100&q=85" },
+];
+
+export function HomePage() {
+ return <main>
+  <section className="hero" id="inicio">
+    <div className="hero-wash wash-one"/><div className="hero-wash wash-two"/><div className="hero-wash wash-three"/>
+    <div className="hero-micro hero-micro-left">DISEÑO<br/>CONSCIENTE <span>↗</span></div>
+    <div className="hero-micro hero-micro-right">MATERIALES<br/>EN MOVIMIENTO <span>↙</span></div>
+    <div className="orbit" aria-label="Fotografías textiles en movimiento">
+      <div className="orbit-track">
+        {[
+          ["photo-1558618666-fcd25c85cd64","Textiles y materiales"],
+          ["photo-1558618047-3c8c76ca7d13","Trabajo textil"],
+          ["photo-1520004434532-668416a08753","Texturas y tejidos"],
+          ["photo-1590736969955-71cc94901144","Diseño de indumentaria"],
+          ["photo-1551232864-3f0890e580d9","Prendas y diseño"],
+          ["photo-1452860606245-08befc0ff44b","Taller creativo"],
+        ].map(([id,alt],i)=><div key={id+i} className={`orbit-photo orbit-photo-${i+1}`} style={{backgroundImage:`url(https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=85)`}} role="img" aria-label={alt}/>)}
+      </div>
+      <div className="hero-core">
+        <div className="hero-monogram"><img src="/brand/subleva-logo.svg" alt="Subleva Textil"/><span>✳</span></div>
+        <p className="hero-coop">COOPERATIVA TEXTIL</p><p className="hero-location">SAN MARTÍN · BUENOS AIRES</p>
+        <h1>Todo vuelve:<br/><em>los materiales,</em><br/>los saberes,<br/>el trabajo.</h1>
+        <p className="hero-description">Diseño y producción textil con compromiso social y ambiental.</p>
+        <a className="button button-lilac" href="#caminos">Encontrá tu camino <span>↓</span></a>
+        <a className="hero-chat" href={msg("Hola, quiero conocer Subleva Textil.")} target="_blank" rel="noreferrer">Hablemos por WhatsApp ↗</a>
+      </div>
+    </div>
+    <div className="hero-bottom"><span>TRABAJO COOPERATIVO</span><span>ECONOMÍA CIRCULAR</span><span>COMUNIDAD</span></div>
+  </section>
+
+  <section className="doors-section section-pad" id="caminos">
+    <div className="doors-intro"><p className="eyebrow">HAY MUCHAS FORMAS DE ENCONTRARNOS</p><h2>Descubrí todo lo que podemos hacer juntos.</h2><p>Aprender una técnica, desarrollar una idea, encontrar un espacio de trabajo o darle otra vida a los textiles. Elegí por dónde empezar: cada puerta abre una forma distinta de ser parte de Subleva.</p></div>
+    <div className="door-grid">{doors.map(d=><Link className={`door-card ${d.className}`} href={d.href} key={d.n}><span className="door-number">{d.n} / 05</span><span className="door-symbol">{d.symbol}</span><h3>{d.title}</h3><p>{d.desc}</p><span className="door-arrow">Descubrir <b>↗</b></span></Link>)}</div>
+  </section>
+
+  <section className="story-section" id="nosotras">
+    <div className="story-image" role="img" aria-label="Espacio creativo y trabajo manual"/>
+    <div className="story-copy"><p className="eyebrow">UNA FORMA DE HACER</p><h2>Una cooperativa que teje comunidad.</h2><p>Somos una cooperativa de diseño y producción textil en San Martín. Nos reúne una convicción: el trabajo, los saberes y los materiales pueden organizarse de otra manera.</p><p>Construimos en colectivo, recuperamos valor y conectamos producción, compromiso social y cuidado ambiental.</p><Link className="text-link" href="/quienes-somos">Conocé nuestra historia <span>↗</span></Link></div>
+    <div className="values-list"><p><span>↻</span> Economía circular</p><p><span>◌</span> Trabajo cooperativo</p><p><span>⌖</span> Producción local</p><p><span>♧</span> Compromiso ambiental</p></div>
+  </section>
+
+  <section className="preview-section section-pad"><div className="section-heading"><div><p className="eyebrow">UN PRIMER VISTAZO</p><h2>Ideas que se vuelven hacer.</h2></div><span className="heading-note">Conocé cada propuesta en profundidad.</span></div><div className="preview-grid">{cards.map(c=><article className="preview-card" key={c.id}><Link href={c.href} className="preview-image" style={{backgroundImage:`url(${c.image})`}} aria-label={c.cta}/><div className="preview-body"><p className="eyebrow">{c.eyebrow}</p><h3>{c.title}</h3><p>{c.text}</p><Link className="text-link" href={c.href}>{c.cta} <span>↗</span></Link></div></article>)}</div></section>
+
+  <section className="services-preview section-pad" id="servicios-preview"><div><p className="eyebrow">DE LA IDEA A LA PRODUCCIÓN</p><h2>Tu proyecto textil puede empezar acá.</h2><p>Diseño, moldería, corte, confección, bordado, estampas, serigrafía y asesoramiento: herramientas para transformar una idea en algo concreto.</p><Link className="button button-dark" href="/servicios">Descubrí nuestros servicios ↗</Link></div><div className="services-stamp"><svg className="thread-path" viewBox="0 0 320 320" aria-hidden="true"><path d="M160 18 C270 35 294 120 245 160 S70 190 82 250 S225 295 272 222 S250 70 160 80 S45 160 160 190 S250 160 160 18"/></svg><span>ASESORÍAS Y SERVICIOS</span><b className="tool-scissors">✂</b><b className="tool-needle">↗</b><b className="tool-machine">▤</b><small>DE LA IDEA A LA PRODUCCIÓN</small></div></section>
+
+  <section className="cowork-preview"><div className="cowork-photo" role="img" aria-label="Personas trabajando en colaboración en un taller textil"><div className="cowork-network" aria-hidden="true"><span className="network-person person-a">✂</span><span className="network-person person-b">⌁</span><span className="network-person person-c">▤</span><span className="network-person person-d">✳</span><i className="network-line line-a"/><i className="network-line line-b"/><i className="network-line line-c"/><b>HACER<br/>EN RED</b></div></div><div className="cowork-copy"><p className="eyebrow">UN LUGAR PARA HACER</p><h2 className="cowork-title">COWORKING</h2><h3 className="cowork-subtitle">Un lugar para hacer en conjunto.</h3><p>Conocé el taller, sus recursos, modalidades de uso y cómo consultar la disponibilidad de máquinas y espacios.</p><Link className="button button-lilac" href="/coworking">Explorar el coworking ↗</Link></div></section>
+
+  <section className="green-preview section-pad" id="punto-verde"><div className="green-copy"><p className="eyebrow">PUNTO VERDE TEXTIL</p><h2>El final de una tela puede ser el comienzo de otra cosa.</h2><p>Un circuito para recibir, clasificar, reutilizar, transformar y devolver valor a los materiales textiles.</p><Link className="button button-dark" href="/punto-verde-textil">Conocé el ciclo ↗</Link></div><div className="cycle-orbit"><div className="pvt-map" aria-label="Red conceptual de puntos verdes textiles"><span className="map-label map-label-a">SAN MARTÍN</span><span className="map-label map-label-b">RECUPERAR</span><span className="map-label map-label-c">REUTILIZAR</span><svg viewBox="0 0 500 380" role="img" aria-label="Mapa ilustrado de una red de puntos verdes"><path d="M52 100 C110 42 158 130 225 92 S360 35 435 110 S370 235 420 285 S260 340 215 275 S80 300 52 220 S120 155 52 100"/><path d="M52 100 L225 92 L420 285 L215 275 L52 100 M225 92 L215 275 M52 220 L420 285 M225 92 L350 190 L215 275"/></svg><span className="map-pin pin-a">＋</span><span className="map-pin pin-b">＋</span><span className="map-pin pin-c">＋</span><span className="map-pin pin-d">＋</span><span className="map-hub">PVT<small>RED TEXTIL</small></span></div><div className="cycle-ring"><div className="cycle-node node-top"><span>▤</span><b>CLASIFICAR</b></div><div className="cycle-node node-right"><span>↻</span><b>REUTILIZAR</b></div><div className="cycle-node node-bottom"><span>⌁</span><b>TRANSFORMAR</b></div><div className="cycle-node node-left"><span>♧</span><b>DEVOLVER VALOR</b></div><div className="cycle-center">PVT<small>TEXTILES<br/>EN CIRCULACIÓN</small></div></div><span className="cycle-receive">01 · RECIBIR</span></div></section>
+
+  <section className="instagram-section section-pad"><div className="section-heading"><div><p className="eyebrow">DESDE NUESTRO UNIVERSO</p><h2>Subleva también pasa por Instagram.</h2><p className="instagram-intro">Procesos, talleres, productos e historias que siguen creciendo día a día.</p></div><a className="button button-dark" href="https://www.instagram.com/subleva_textil/" target="_blank" rel="noreferrer">Seguir @subleva_textil ↗</a></div><div className="instagram-grid">{["DbWnKNxICHZ","DbwgYfyoF2K","DJpYmJCR9mh"].map((id,i)=><a className="instagram-post" key={id} href={`https://www.instagram.com/p/${id}/`} target="_blank" rel="noreferrer" aria-label={`Ver publicación ${i+1} de Subleva en Instagram`}><iframe src={`https://www.instagram.com/p/${id}/embed/`} title={`Publicación de Instagram ${i+1}`} loading="lazy"/><span className="instagram-fallback">Ver publicación en Instagram ↗</span></a>)}</div></section>
+  <section className="contact-strip"><div><p className="eyebrow">HAGAMOS ALGO JUNTOS</p><h2>Las buenas ideas<br/>se hacen en comunidad.</h2></div><a className="button button-dark" href={msg("Hola, quiero conversar con Subleva Textil.")} target="_blank" rel="noreferrer">Empezar una conversación ↗</a></section>
+ </main>;
+}
+
+export function ContentPage({ eyebrow, title, intro, children }: { eyebrow:string; title:string; intro:string; children?:React.ReactNode }) {
+ return <main className="inner-page"><section className="inner-hero"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section><div className="inner-content">{children}</div></main>;
+}
+
+export function ContactCTA({ title="¿Lo conversamos?", text="Contanos qué necesitás y encontramos juntos el mejor camino.", message="Hola, quiero hacer una consulta a Subleva Textil." }: {title?:string;text?:string;message?:string}) {
+ return <section className="inner-cta"><div><h2>{title}</h2><p>{text}</p></div><a className="button button-dark" href={msg(message)} target="_blank" rel="noreferrer">Escribinos por WhatsApp ↗</a></section>;
+}
