@@ -18,7 +18,19 @@ export default function AdminDashboard(){
  const [data,setData]=useState<Record<SectionKey,Item[]>>(seed);
  const [ready,setReady]=useState(false);
  const [name,setName]=useState(""); const [detail,setDetail]=useState(""); const [value,setValue]=useState(""); const [status,setStatus]=useState("Disponible"); const [editing,setEditing]=useState<string|null>(null);
- useEffect(()=>{try{const saved=localStorage.getItem(storageKey);if(saved){/* eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of the local-only demo from browser storage */setData(JSON.parse(saved));}}catch{}/* eslint-disable-next-line react-hooks/set-state-in-effect -- gate persistence until the initial browser read finishes */setReady(true)},[]);
+ useEffect(() => {
+  try {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate the local-only demo from browser storage once after mount
+      setData(JSON.parse(saved));
+    }
+  } catch {
+    // Ignore malformed local demo data and keep the seed content.
+  }
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- prevent persistence before the first browser read completes
+  setReady(true);
+}, []);
  useEffect(()=>{if(ready)localStorage.setItem(storageKey,JSON.stringify(data))},[data,ready]);
  const total=useMemo(()=>keys.reduce((n,k)=>n+data[k].length,0),[data]);
  function resetForm(){setName("");setDetail("");setValue("");setStatus("Disponible");setEditing(null)}
