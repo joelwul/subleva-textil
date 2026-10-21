@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ScrollToTop from "@/components/ScrollToTop";
 import ServicesThread from "@/components/ServicesThread";
@@ -7,7 +8,7 @@ const msg = (text: string) => `https://wa.me/${WA}?text=${encodeURIComponent(tex
 
 export function Logo({ light = false }: { light?: boolean }) {
   return <Link href="/" className={`brand ${light ? "brand-light" : ""}`} aria-label="Subleva Textil, inicio">
-    <span className="brand-image"><img src="/brand/subleva-logo.svg" alt="Subleva Textil" /></span>
+    <span className="brand-image"><Image src="/brand/subleva-logo.svg" alt="Subleva Textil" width={519} height={285} /></span>
   </Link>;
 }
 
@@ -19,6 +20,7 @@ export function Header() {
       <Link href="/talleres">Talleres</Link><Link href="/servicios">Servicios</Link>
       <Link href="/coworking">Coworking</Link><Link href="/punto-verde-textil">Punto Verde Textil</Link>
     </nav>
+    <nav className="mobile-nav" aria-label="Navegación principal móvil"><Link href="/quienes-somos">Nosotros</Link><Link href="/productos">Productos</Link><Link href="/talleres">Talleres</Link><Link href="/servicios">Servicios</Link><Link href="/coworking">Coworking</Link><Link href="/punto-verde-textil">Punto Verde Textil</Link></nav>
     <a className="button button-dark header-cta" href={msg("Hola, quisiera conocer más sobre Subleva Textil.")} target="_blank" rel="noreferrer">Escribinos <span>↗</span></a>
   </header>;
 }
@@ -71,14 +73,14 @@ export function HomePage() {
         ].map(([id,alt],i)=><div key={id+i} className={`orbit-photo orbit-photo-${i+1}`} style={{backgroundImage:`url(https://images.unsplash.com/${id}?auto=format&fit=crop&w=2000&q=90)`}} role="img" aria-label={alt}/>)}
       </div>
       <div className="hero-core">
-        <div className="hero-monogram"><img src="/brand/subleva-logo.svg" alt="Subleva Textil"/><span>✳</span></div>
+        <div className="hero-monogram"><Image src="/brand/subleva-logo.svg" alt="Subleva Textil" width={519} height={285} /><span>✳</span></div>
         <p className="hero-coop">COOPERATIVA TEXTIL</p><p className="hero-location">SAN MARTÍN · BUENOS AIRES</p>
         <h1>Todo vuelve:<br/><em>los materiales,</em><br/>los saberes,<br/>el trabajo.</h1>
         <p className="hero-description">Diseño y producción textil con compromiso social y ambiental.</p>
         <a className="button button-lilac hero-primary-cta" href={msg("Hola, quiero conversar sobre una idea o proyecto con Subleva Textil.")} target="_blank" rel="noreferrer">Hablemos de tu proyecto <span>↗</span></a>
       </div>
     </div>
-    <div className="hero-bottom"><span>TRABAJO COOPERATIVO</span><span>ECONOMÍA CIRCULAR</span><span>COMUNIDAD</span></div>
+    <div className="hero-bottom" aria-label="Trabajo cooperativo, economía circular y comunidad"><span>TRABAJO COOPERATIVO</span><span aria-hidden="true">✳</span><span>DISEÑO CONSCIENTE</span><span aria-hidden="true">✳</span><span>MATERIALES EN MOVIMIENTO</span><span aria-hidden="true">✳</span><span>ECONOMÍA CIRCULAR</span><span aria-hidden="true">✳</span><span>COMUNIDAD</span><span aria-hidden="true">✳</span><span aria-hidden="true">TRABAJO COOPERATIVO</span><span aria-hidden="true">✳</span><span aria-hidden="true">DISEÑO CONSCIENTE</span><span aria-hidden="true">✳</span><span aria-hidden="true">MATERIALES EN MOVIMIENTO</span><span aria-hidden="true">✳</span><span aria-hidden="true">ECONOMÍA CIRCULAR</span><span aria-hidden="true">✳</span><span aria-hidden="true">COMUNIDAD</span></div>
   </section>
 
   <section className="doors-section section-pad" id="caminos">
@@ -98,7 +100,7 @@ export function HomePage() {
 
   <section className="cowork-preview"><div className="cowork-photo" role="img" aria-label="Personas trabajando con máquinas de costura en un taller textil" style={{backgroundImage:"linear-gradient(180deg,rgba(37,35,34,.03),rgba(37,35,34,.2)),url(https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1800&q=90)"}}><div className="cowork-network" aria-hidden="true"><span className="network-person person-a">✂</span><span className="network-person person-b">⌁</span><span className="network-person person-c">▤</span><span className="network-person person-d">✳</span><i className="network-line line-a"/><i className="network-line line-b"/><i className="network-line line-c"/><b>HACER<br/>EN RED</b></div></div><div className="cowork-copy"><p className="eyebrow">UN LUGAR PARA HACER</p><h2 className="cowork-title">COWORKING</h2><h3 className="cowork-subtitle">Un lugar para hacer en conjunto.</h3><p>Conocé el taller, sus recursos, modalidades de uso y cómo consultar la disponibilidad de máquinas y espacios.</p><Link className="button button-lilac" href="/coworking">Explorar el coworking ↗</Link></div></section>
 
-  <section className="green-preview section-pad" id="punto-verde"><div className="green-copy"><p className="eyebrow">PUNTO VERDE TEXTIL</p><h2>El final de una tela puede ser el comienzo de otra cosa.</h2><p>Un circuito para recibir, clasificar, reutilizar, transformar y devolver valor a los materiales textiles.</p><Link className="button button-dark" href="/punto-verde-textil">Conocé el ciclo ↗</Link></div><div className="cycle-orbit"><div className="pvt-map" aria-label="Red conceptual de puntos verdes textiles"><span className="map-label map-label-a">SAN MARTÍN</span><span className="map-label map-label-b">RECUPERAR</span><span className="map-label map-label-c">REUTILIZAR</span><svg viewBox="0 0 500 380" role="img" aria-label="Mapa ilustrado de una red de puntos verdes"><path fill="none" d="M52 100 C110 42 158 130 225 92 S360 35 435 110 S370 235 420 285 S260 340 215 275 S80 300 52 220 S120 155 52 100"/><path fill="none" d="M52 100 L225 92 L420 285 L215 275 L52 100 M225 92 L215 275 M52 220 L420 285 M225 92 L350 190 L215 275"/></svg><span className="map-pin pin-a">＋</span><span className="map-pin pin-b">＋</span><span className="map-pin pin-c">＋</span><span className="map-pin pin-d">＋</span><span className="map-hub">PVT<small>RED TEXTIL</small></span></div><div className="cycle-ring"><div className="cycle-node node-top"><span>▤</span><b>CLASIFICAR</b></div><div className="cycle-node node-right"><span>↻</span><b>REUTILIZAR</b></div><div className="cycle-node node-bottom"><span>⌁</span><b>TRANSFORMAR</b></div><div className="cycle-node node-left"><span>♧</span><b>DEVOLVER VALOR</b></div><div className="cycle-center">PVT<small>TEXTILES<br/>EN CIRCULACIÓN</small></div></div><span className="cycle-receive">01 · RECIBIR</span></div></section>
+  <section className="green-preview section-pad" id="punto-verde"><div className="green-copy"><p className="eyebrow">PUNTO VERDE TEXTIL</p><h2>El final de una tela puede ser el comienzo de otra cosa.</h2><p>Un circuito para recibir, clasificar, reutilizar, transformar y devolver valor a los materiales textiles.</p><Link className="button button-dark" href="/punto-verde-textil">Conocé el ciclo ↗</Link></div><div className="cycle-orbit"><div className="pvt-cycle-visual" aria-label="Esquema conceptual del ciclo textil, no es un mapa de puntos de recolección"><svg viewBox="0 0 420 360" aria-hidden="true"><path className="pvt-thread" d="M210 38 C340 38 385 130 332 224 S125 340 68 225 S90 38 210 38"/><path className="pvt-thread pvt-thread-inner" d="M210 38 L332 224 L68 225 Z"/></svg><span className="pvt-cycle-label label-one">RECIBIR</span><span className="pvt-cycle-label label-two">CLASIFICAR</span><span className="pvt-cycle-label label-three">TRANSFORMAR</span><span className="pvt-cycle-label label-four">REUTILIZAR</span><div className="pvt-cycle-core">PVT<small>TEXTILES<br/>EN CIRCULACIÓN</small></div><p className="pvt-cycle-caption">UN CICLO COLECTIVO, UN PUNTO DE ENCUENTRO</p></div></div></section>
 
   <section className="instagram-section section-pad"><div className="section-heading"><div><p className="eyebrow">DESDE NUESTRO UNIVERSO</p><h2>Subleva también pasa por Instagram.</h2><p className="instagram-intro">Procesos, talleres, productos e historias que siguen creciendo día a día.</p></div><a className="button button-dark" href="https://www.instagram.com/subleva_textil/" target="_blank" rel="noreferrer">Seguir @subleva_textil ↗</a></div><div className="instagram-grid">{["DbWnKNxICHZ","DbwgYfyoF2K","DJpYmJCR9mh"].map((id,i)=><a className="instagram-post" key={id} href={`https://www.instagram.com/p/${id}/`} target="_blank" rel="noreferrer" aria-label={`Ver publicación ${i+1} de Subleva en Instagram`}><iframe src={`https://www.instagram.com/p/${id}/embed/`} title={`Publicación de Instagram ${i+1}`} loading="lazy"/><span className="instagram-fallback">Ver publicación en Instagram ↗</span></a>)}</div></section>
   <section className="reviews-section section-pad" aria-labelledby="reviews-title">
