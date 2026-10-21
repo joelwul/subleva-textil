@@ -19,6 +19,7 @@ export function Header() {
       <Link href="/talleres">Talleres</Link><Link href="/servicios">Servicios</Link>
       <Link href="/coworking">Coworking</Link><Link href="/punto-verde-textil">Punto Verde Textil</Link>
     </nav>
+    <nav className="mobile-nav" aria-label="Navegación principal móvil"><Link href="/quienes-somos">Nosotros</Link><Link href="/productos">Productos</Link><Link href="/talleres">Talleres</Link><Link href="/servicios">Servicios</Link><Link href="/coworking">Coworking</Link><Link href="/punto-verde-textil">Punto Verde Textil</Link></nav>
     <a className="button button-dark header-cta" href={msg("Hola, quisiera conocer más sobre Subleva Textil.")} target="_blank" rel="noreferrer">Escribinos <span>↗</span></a>
   </header>;
 }
@@ -78,7 +79,7 @@ export function HomePage() {
         <a className="button button-lilac hero-primary-cta" href={msg("Hola, quiero conversar sobre una idea o proyecto con Subleva Textil.")} target="_blank" rel="noreferrer">Hablemos de tu proyecto <span>↗</span></a>
       </div>
     </div>
-    <div className="hero-bottom" aria-label="Trabajo cooperativo, economía circular y comunidad"><span>TRABAJO COOPERATIVO</span><span aria-hidden="true">✳</span><span>DISEÑO CONSCIENTE</span><span aria-hidden="true">✳</span><span>MATERIALES EN MOVIMIENTO</span><span aria-hidden="true">✳</span><span>ECONOMÍA CIRCULAR</span><span aria-hidden="true">✳</span><span>COMUNIDAD</span></div>
+    <div className="hero-bottom" aria-label="Trabajo cooperativo, economía circular y comunidad"><span>TRABAJO COOPERATIVO</span><span aria-hidden="true">✳</span><span>DISEÑO CONSCIENTE</span><span aria-hidden="true">✳</span><span>MATERIALES EN MOVIMIENTO</span><span aria-hidden="true">✳</span><span>ECONOMÍA CIRCULAR</span><span aria-hidden="true">✳</span><span>COMUNIDAD</span><span aria-hidden="true">✳</span><span aria-hidden="true">TRABAJO COOPERATIVO</span><span aria-hidden="true">✳</span><span aria-hidden="true">DISEÑO CONSCIENTE</span><span aria-hidden="true">✳</span><span aria-hidden="true">MATERIALES EN MOVIMIENTO</span><span aria-hidden="true">✳</span><span aria-hidden="true">ECONOMÍA CIRCULAR</span><span aria-hidden="true">✳</span><span aria-hidden="true">COMUNIDAD</span></div>
   </section>
 
   <section className="doors-section section-pad" id="caminos">
