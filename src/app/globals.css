@@ -189,3 +189,76 @@ body{font-family:Montserrat,Arial,Helvetica,sans-serif}
 .services-stamp .tool-needle{transform:translate(calc(var(--pointer-x,0px)*-.6),calc(var(--pointer-y,0px)*-.6)) rotate(calc(var(--pointer-rotate,0deg)*-1))}
 .services-stamp .tool-machine{transform:translateY(calc(var(--pointer-y,0px)*-.3))}
 @media(max-width:760px){.orbit-track{inset:0}.hero-core{z-index:4}.hero:after{z-index:2}.hero-wash{z-index:1}}
+
+
+/* PASADA PREMIUM 01 — jerarquía editorial, movimiento accesible y datos reales */
+.hero-bottom{
+  left:0;right:0;bottom:0;overflow:hidden;justify-content:flex-start;gap:30px;
+  width:max-content;min-width:200%;padding:15px 0 14px 5%;
+  border-top:1px solid #25232230;background:rgba(240,232,212,.72);
+  backdrop-filter:blur(8px);white-space:nowrap;animation:subleva-marquee 34s linear infinite;
+  font-size:9px;letter-spacing:.18em
+}
+.hero-bottom span{flex:0 0 auto}
+.hero-bottom span[aria-hidden="true"]{color:#76639e;font-size:13px}
+.hero:hover .hero-bottom{animation-play-state:paused}
+@keyframes subleva-marquee{to{transform:translateX(-50%)}}
+.pvt-cycle-visual{
+  position:relative;width:min(100%,480px);aspect-ratio:1.08;justify-self:center;
+  display:grid;place-items:center;isolation:isolate;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 45%,#fffdf7 0%,#f0eee3 64%,#e4eadb 100%);
+  border:1px solid #a9b79d;border-radius:48% 52% 43% 57%;
+  box-shadow:0 28px 80px #43563a18
+}
+.pvt-cycle-visual>svg{position:absolute;inset:8%;width:84%;height:84%;overflow:visible}
+.pvt-thread{fill:none;stroke:#78916b;stroke-width:2.3;stroke-linecap:round;stroke-dasharray:4 7;animation:pvt-thread-drift 24s linear infinite}
+.pvt-thread-inner{stroke:#b6afd7;stroke-width:1.7;stroke-dasharray:2 7;animation-direction:reverse}
+.pvt-cycle-core{position:relative;z-index:2;width:34%;aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#252322;color:#f0e8d4;font-size:clamp(25px,3vw,38px);font-weight:900;box-shadow:0 0 0 9px #b5cca355,0 0 0 18px #b5cca322}
+.pvt-cycle-core small{font-size:8px;line-height:1.5;text-align:center;letter-spacing:.14em;color:#b6afd7;margin-top:7px}
+.pvt-cycle-label{position:absolute;z-index:3;padding:9px 12px;background:#fffdf0;color:#252322;border:1px solid #a9b79d;font-size:9px;font-weight:900;letter-spacing:.1em;box-shadow:0 7px 20px #2523220c}
+.label-one{top:13%;left:calc(50% - 34px)}.label-two{right:7%;top:43%}.label-three{bottom:13%;left:calc(50% - 43px)}.label-four{left:5%;top:43%}
+.pvt-cycle-caption{position:absolute;bottom:3%;left:0;right:0;text-align:center;font-size:8px!important;letter-spacing:.12em;color:#6a7560;margin:0}
+@keyframes pvt-thread-drift{to{stroke-dashoffset:-160}}
+.workshop-grid{align-items:stretch}
+.workshop-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:330px;padding:clamp(22px,3vw,34px);border:1px solid #25232212;background:#fffdf7;box-shadow:0 12px 35px #25232208;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.workshop-card:after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:repeating-linear-gradient(90deg,#b6afd7 0 7px,transparent 7px 13px);opacity:.85}
+.workshop-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px #25232212}
+.workshop-card-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:15px;margin-bottom:35px}
+.workshop-tag{display:inline-flex;padding:7px 9px;border:1px solid #76639e;color:#655481;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+.workshop-number{font-size:12px;color:#8a8277;font-weight:800}
+.workshop-card .eyebrow{color:#76639e}
+.workshop-card h2{font-size:clamp(27px,3vw,38px);line-height:1.02;max-width:440px}
+.workshop-card>p:not(.eyebrow){font-size:13px;line-height:1.7;color:#625d55;margin:4px 0}
+.workshop-card .text-link{margin-top:auto;padding-top:24px}
+.workshop-featured{background:#e7e0f0;border-color:#b6afd766}
+.workshop-featured .workshop-tag{background:#252322;color:#f0e8d4;border-color:#252322}
+.workshop-date{font-weight:900;color:#252322!important;font-size:15px!important;margin-top:5px!important}
+.workshop-place{font-size:11px!important;letter-spacing:.06em}
+.pvt-materials{display:grid;grid-template-columns:.8fr 1.2fr;gap:8%;align-items:start;padding:clamp(25px,5vw,65px);margin:60px 0;background:#f1eadc}
+.pvt-materials-heading h2{font-size:clamp(30px,4vw,47px)}
+.pvt-materials-heading>p:last-child{font-size:13px;color:#625d55;line-height:1.75}
+.pvt-material-list{list-style:none;padding:0;margin:0;border-top:1px solid #25232225}
+.pvt-material-list li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:center;padding:20px 0;border-bottom:1px solid #25232225}
+.pvt-material-list li span{font-size:10px;color:#76639e;font-weight:900;letter-spacing:.12em}
+.pvt-material-list li strong{font-size:clamp(14px,1.4vw,17px);line-height:1.45}
+.pvt-visit{display:grid;grid-template-columns:1.2fr .8fr;gap:8%;align-items:center;padding:clamp(25px,5vw,60px) 0;margin:35px 0}
+.pvt-visit h2{font-size:clamp(34px,4.6vw,56px);max-width:550px}
+.pvt-visit>div>p:not(.eyebrow){max-width:600px;font-size:14px;color:#625d55;line-height:1.8}
+.pvt-visit-note{padding:clamp(24px,3vw,36px);background:#b5cca3;position:relative;overflow:hidden}
+.pvt-note-mark{display:block;font-size:42px;line-height:1;margin-bottom:25px;color:#43563a}
+.pvt-visit-note h3{font-size:clamp(25px,3vw,35px);line-height:1.04;letter-spacing:-.04em;margin:0 0 14px}
+.pvt-visit-note>p:not(.eyebrow){font-size:13px;line-height:1.7}
+:where(a,button,input,textarea,select,[tabindex]):focus-visible{outline:3px solid #76639e;outline-offset:4px}
+@media(max-width:760px){
+ .hero-bottom{display:flex;width:max-content;min-width:220%;bottom:0;padding-left:6%;font-size:8px;gap:22px}
+ .pvt-cycle-visual{width:min(100%,420px)}
+ .pvt-cycle-label{font-size:8px;padding:7px 8px}
+ .pvt-materials,.pvt-visit{grid-template-columns:1fr;gap:24px}
+ .pvt-materials{padding:27px 22px;margin:35px 0}
+ .workshop-card{min-height:300px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-bottom,.pvt-thread,.pvt-thread-inner{animation:none!important}
+ .hero-bottom{width:100%;min-width:0;flex-wrap:wrap;white-space:normal;justify-content:center;gap:8px 14px}
+ .workshop-card:hover{transform:none}
+}
