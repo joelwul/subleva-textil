@@ -1,0 +1,2 @@
+const files={onda:"/guardas/guarda-onda.svg",lazos:"/guardas/guarda-lazos.svg",pespunte:"/guardas/guarda-pespunte.svg",geometrica:"/guardas/guarda-geometrica.svg",entrelazada:"/guardas/guarda-entrelazada.svg"} as const;
+export default function TextileGuard({pattern="onda",className=""}:{pattern?:keyof typeof files;className?:string}){return <div aria-hidden="true" className={`textile-guard textile-guard-${pattern} ${className}`} style={{maskImage:`url(${files[pattern]})`,WebkitMaskImage:`url(${files[pattern]})`}}/>}
