@@ -21,11 +21,12 @@ const products: Product[] = [
 ];
 
 
+const photoForLine=(line:string)=>line==="Maqui"?"/images/subleva/products/maqui-principal.jpg":line==="Insumos"?"":"/images/subleva/products/revuelo-principal.jpg";
+
 export default function ProductCatalog() {
   const [filter, setFilter] = useState("Todos");
   const [catalog, setCatalog] = useState<Product[]>(products);
   useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { const rows = j.content?.["Productos"]; if (Array.isArray(rows) && rows.length) setCatalog(rows.map((p: {name:string;detail?:string;line?:string;status?:string;value?:string;image?:string;price?:string;colors?:string;sizes?:string}) => ({name:p.name,line:p.line || "Revuelo",description:p.detail || "",image:p.image || photoForLine(p.line || "Revuelo"),stock:p.value || p.status || "Consultar stock",price:p.price || "",colors:p.colors || "Consultar colores",sizes:p.sizes || "Consultar medidas"}))); }).catch(() => {}); }, []);
-  const photoForLine=(line:string)=>line==="Maqui"?"/images/subleva/products/maqui-principal.jpg":line==="Insumos"?"":"/images/subleva/products/revuelo-principal.jpg";
   const filters = useMemo(() => ["Todos", ...Array.from(new Set(catalog.map(p => p.line).filter(Boolean)))], [catalog]);
   const shown = useMemo(() => filter === "Todos" ? catalog : catalog.filter(p => p.line === filter), [filter, catalog]);
   const card: React.CSSProperties = {background:"#fffdf8",border:"1px solid rgba(37,35,34,.14)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column"};
