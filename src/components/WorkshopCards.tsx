@@ -1,31 +1,21 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-
 const WA = "https://wa.me/5491124078491?text=";
 const stitch = "M0 12 C8 2 16 22 24 12 S40 2 48 12 S64 22 72 12 S88 2 96 12 S112 22 120 12 S136 2 144 12 S160 22 168 12 S184 2 192 12 S208 22 216 12 S232 2 240 12 S256 22 264 12 S280 2 288 12 S304 22 312 12 S328 2 336 12 S352 22 360 12";
-
-function Stitch() {
-  return <svg className="workshop-stitch" viewBox="0 0 360 24" preserveAspectRatio="none" aria-hidden="true"><path d={stitch}/></svg>;
-}
-
-export default function WorkshopCards({ compact = false }: { compact?: boolean }) {
-  const [managed, setManaged] = useState<Array<{name:string;detail:string;value:string;status:string}>>([]);
-  useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { if (Array.isArray(j.content?.["Talleres"])) setManaged(j.content["Talleres"]); }).catch(() => {}); }, []);
-  const first = managed.find((x) => x.name.toLowerCase().includes("moldería"));
-  const second = managed.find((x) => x.name.toLowerCase().includes("costura"));
-  return <div className={`workshop-grid ${compact ? "workshop-grid-compact" : ""}`}>
-    <article className="workshop-flyer workshop-flyer-molderia">
-      <div className="workshop-photo workshop-photo-molderia" role="img" aria-label="Mesa de trabajo con moldes y herramientas textiles"><span className="workshop-sticker">TALLER<br/>REGULAR</span></div>
-      <div className="workshop-paper"><p className="workshop-category">MOLDERÍA · DISEÑO</p><h3>{first?.name || <>MOLDERÍA<br/><em>PERSONALIZADA</em></>}</h3><Stitch/><div className="workshop-details">{first?.value ? <strong>{first.value}</strong> : <><span>MIÉRCOLES Y VIERNES</span><strong>9 A 11:30 H</strong><span>VIERNES</span><strong>12 A 14:30 H</strong></>}</div><p className="workshop-description">{first?.detail || "Aprendé las bases de la moldería, cómo se construyen las prendas a partir del molde y a trabajar con tablas de talles. Vas a conocer moldería industrial y a medida, y terminar desarrollando un molde básico de cuerpo superior."}</p><a className="workshop-action" href={`${WA}${encodeURIComponent("Hola, quiero consultar por Moldería personalizada.")}`} target="_blank" rel="noreferrer">CONSULTAR CUPOS <span>↗</span></a></div>
-    </article>
-    <article className="workshop-flyer workshop-flyer-costura">
-      <div className="workshop-photo workshop-photo-costura" role="img" aria-label="Manos aprendiendo a coser en una máquina"><span className="workshop-vertical-note">APRENDER HACIENDO</span></div>
-      <div className="workshop-paper workshop-paper-lilac"><p className="workshop-category">COSTURA · INICIACIÓN</p><h3>{second?.name || <>COSTURA<br/><em>INICIAL</em></>}</h3><Stitch/><div className="workshop-details">{second?.value ? <strong>{second.value}</strong> : <><span>LUNES</span><strong>10:30 A 13 H</strong></>}</div><p className="workshop-description">{second?.detail || "Una primera aproximación a la costura: conocé la máquina recta, sus funciones y técnicas básicas. Practicá las primeras costuras y terminá confeccionando un accesorio."}</p><a className="workshop-action" href={`${WA}${encodeURIComponent("Hola, quiero consultar por Costura inicial.")}`} target="_blank" rel="noreferrer">CONSULTAR CUPOS <span>↗</span></a></div>
-    </article>
-    <article className="workshop-flyer workshop-flyer-tintes">
-      <div className="workshop-photo workshop-photo-tintes" role="img" aria-label="Telas teñidas con pigmentos naturales, hojas y recipientes de tintura"><span className="workshop-photo-label">COLOR QUE<br/>VIENE DE LA TIERRA</span></div>
-      <div className="workshop-paper workshop-paper-tintes"><p className="workshop-category">PRESENCIAL · EXPERIMENTACIÓN</p><h3>TALLER DE<br/><em>TINTES NATURALES</em></h3><Stitch/><div className="workshop-date-block"><span>28 DE ENERO</span><strong>9 A 13 H</strong></div><p className="workshop-description">Explorar el color a partir de materiales naturales y descubrir las huellas que dejan sobre la tela.</p><p className="workshop-location">SAN ANDRÉS · BUENOS AIRES</p><a className="workshop-action" href="https://www.instagram.com/subleva_textil/" target="_blank" rel="noreferrer">CONSULTANOS POR DM <span>↗</span></a><small className="workshop-confirmation">Fecha y próxima edición a confirmar con Subleva.</small></div>
-    </article>
-  </div>;
+function Stitch(){return <svg className="workshop-stitch" viewBox="0 0 360 24" preserveAspectRatio="none" aria-hidden="true"><path d={stitch}/></svg>}
+type Workshop={id:string;name:string;detail:string;value:string;status:string;image?:string;featured?:boolean;kind?:string;date?:string;dateEnd?:string};
+export default function WorkshopCards({compact=false}:{compact?:boolean}){
+ const [managed,setManaged]=useState<Workshop[]>([]);
+ useEffect(()=>{fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>{if(Array.isArray(j.content?.["Talleres"]))setManaged(j.content["Talleres"].filter((x:Workshop)=>x.status==="Publicado"||x.status==="Disponible"))}).catch(()=>{})},[]);
+ const defaults:Workshop[]=[
+ {id:"default-molderia",name:"Moldería personalizada",detail:"Aprendé las bases de la moldería, las tablas de talles y la moldería industrial y a medida. Terminá desarrollando un molde básico de cuerpo superior.",value:"Miércoles 9–11:30; viernes 9–11:30 y 12–14:30",status:"Publicado",kind:"Regular"},
+ {id:"default-costura",name:"Costura inicial",detail:"Conocé la máquina recta, sus funciones y técnicas básicas. Practicá las primeras costuras y terminá confeccionando un accesorio.",value:"Lunes 10:30–13",status:"Publicado",kind:"Regular"},
+ {id:"default-tintes",name:"Taller de tintes naturales",detail:"Explorar el color a partir de materiales naturales y descubrir las huellas que dejan sobre la tela.",value:"Consultar próxima edición",status:"Publicado",kind:"Seminario puntual"}
+ ];
+ const available=managed.length?managed:defaults;
+ const featured=available.filter(x=>x.featured).slice(0,3);
+ const shown=featured.length?featured:available.slice(0,3);
+ const today=new Date().toISOString().slice(0,10);
+ const fallbacks=["https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=1000&q=85","https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=85","https://images.unsplash.com/photo-1455390582262-044cdei?auto=format&fit=crop&w=1000&q=85"];
+ return <div className={`workshop-grid ${compact?"workshop-grid-compact":""}`}>{shown.map((w,i)=>{const passed=w.kind==="Seminario puntual"&&Boolean(w.date&&w.date<today);const image=w.image||fallbacks[i%fallbacks.length];return <article className={`workshop-flyer ${i===1?"workshop-flyer-costura":i===2?"workshop-flyer-tintes":"workshop-flyer-molderia"}`} key={w.id}><div className="workshop-photo" style={{backgroundImage:`linear-gradient(180deg,transparent 55%,rgba(37,35,34,.2)),url("${image}")`}} role="img" aria-label={w.name}><span className="workshop-sticker">{passed?"TALLERES\nPASADOS":w.kind==="Seminario puntual"?"SEMINARIO\nPUNTUAL":"TALLER\nREGULAR"}</span></div><div className={`workshop-paper ${i===1?"workshop-paper-lilac":i===2?"workshop-paper-tintes":""}`}><p className="workshop-category">{w.kind==="Seminario puntual"?"SEMINARIO · ENCUENTRO PUNTUAL":"TALLER · SABERES QUE CIRCULAN"}</p><h3>{w.name}</h3><Stitch/><div className="workshop-details">{w.date&&<strong>{new Intl.DateTimeFormat("es-AR",{day:"numeric",month:"long"}).format(new Date(w.date+"T12:00:00"))}</strong>}<strong>{w.value||"Consultar horarios"}</strong>{w.dateEnd&&w.dateEnd!==w.date&&<span>Hasta {w.dateEnd}</span>}</div><p className="workshop-description">{w.detail}</p><a className="workshop-action" href={`${WA}${encodeURIComponent("Hola, quiero consultar por "+w.name+".")}`} target="_blank" rel="noreferrer">{passed?"CONSULTAR PRÓXIMA EDICIÓN":"CONSULTAR CUPOS"} <span>↗</span></a></div></article>})}</div>
 }
