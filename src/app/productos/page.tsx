@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Shell, ContentPage, ContactCTA } from "@/components/Site";
 import ProductCatalog from "@/components/ProductCatalog";
+import TextileGuard from "@/components/TextileGuard";
 
 export const metadata: Metadata = { title: "Productos e insumos · Revuelo + Maqui" };
 
@@ -35,7 +36,7 @@ export default function Page() {
               <p>Nuestra línea de accesorios de cero desperdicio en algodón teñido con tintes naturales mediante procesos artesanales respetuosos del ambiente.</p>
             </div>
           </section>
-          <ProductCatalog />
+          <TextileGuard pattern="geometrica" className="guard-products-page"/><ProductCatalog />
         </>
       </ContentPage>
       <ContactCTA title="¿Buscás un artículo en particular?" text="Consultanos por precio, stock, colores, talles y disponibilidad." message="Hola, quiero consultar por productos e insumos de Subleva Textil." />
