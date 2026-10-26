@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 const WA = "https://wa.me/5491124078491?text=";
-type Product = { name: string; line: string; description: string; image: string; stock: string; colors: string; sizes: string };
+type Product = { name: string; line: string; description: string; image: string; stock: string; colors: string; sizes: string; price?:string };
 const products: Product[] = [
   {name:"Riñonera 30 litros Revuelo",line:"Revuelo",description:"Riñonera confeccionada a partir de materiales reutilizados. Consultá disponibilidad y detalles.",image:"/images/subleva/products/revuelo-principal.jpg",stock:"Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"},
   {name:"Riñonera 40 litros Revuelo",line:"Revuelo",description:"Accesorio de gran capacidad elaborado mediante suprarreciclaje textil.",image:"/images/subleva/products/revuelo-principal.jpg",stock:"Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"},
@@ -24,7 +24,7 @@ const products: Product[] = [
 export default function ProductCatalog() {
   const [filter, setFilter] = useState("Todos");
   const [catalog, setCatalog] = useState<Product[]>(products);
-  useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { const rows = j.content?.["Productos"]; if (Array.isArray(rows) && rows.length) setCatalog(rows.map((p: {name:string;detail?:string;line?:string;status?:string;value?:string;image?:string}) => ({name:p.name,line:p.line === "Maqui" || p.line === "Insumos" ? p.line : "Revuelo",description:p.detail || "",image:p.image || "",stock:p.value || p.status || "Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"}))); }).catch(() => {}); }, []);
+  useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { const rows = j.content?.["Productos"]; if (Array.isArray(rows) && rows.length) setCatalog(rows.map((p: {name:string;detail?:string;line?:string;status?:string;value?:string;image?:string;price?:string;colors?:string;sizes?:string}) => ({name:p.name,line:p.line || "Revuelo",description:p.detail || "",image:p.image || "",stock:p.value || p.status || "Consultar stock",price:p.price || "",colors:p.colors || "Consultar colores",sizes:p.sizes || "Consultar medidas"}))); }).catch(() => {}); }, []);
   const filters = useMemo(() => ["Todos", ...Array.from(new Set(catalog.map(p => p.line).filter(Boolean)))], [catalog]);
   const shown = useMemo(() => filter === "Todos" ? catalog : catalog.filter(p => p.line === filter), [filter, catalog]);
   const card: React.CSSProperties = {background:"#fffdf8",border:"1px solid rgba(37,35,34,.14)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column"};
@@ -42,7 +42,7 @@ export default function ProductCatalog() {
           <h3 style={{fontSize:19,lineHeight:1.15,margin:"9px 0 5px",letterSpacing:"-.025em"}}>{p.name}</h3>
           <p style={detail}>{p.description}</p>
           <div style={{marginTop:8,paddingTop:10,borderTop:"1px solid rgba(37,35,34,.12)",width:"100%"}}>
-            <p style={detail}><strong>Color:</strong> {p.colors}</p><p style={detail}><strong>Talle / medida:</strong> {p.sizes}</p><p style={detail}><strong>Stock:</strong> {p.stock}</p>
+            {p.price&&<p style={detail}><strong>Precio:</strong> {p.price}</p>}<p style={detail}><strong>Color:</strong> {p.colors}</p><p style={detail}><strong>Talle / medida:</strong> {p.sizes}</p><p style={detail}><strong>Stock:</strong> {p.stock}</p>
           </div>
           <a href={WA+encodeURIComponent("Hola, quiero consultar por: "+p.name+". ¿Me comparten precio, stock y variantes disponibles?")} target="_blank" rel="noreferrer" style={{marginTop:16,display:"block",textAlign:"center",width:"100%",padding:"12px 14px",borderRadius:99,background:"#252322",color:"#faf7ef",fontSize:12,fontWeight:800}}>Consultar este artículo ↗</a>
         </div>
