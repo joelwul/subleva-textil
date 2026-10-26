@@ -25,7 +25,7 @@ export default function ProductCatalog() {
   const [filter, setFilter] = useState("Todos");
   const [catalog, setCatalog] = useState<Product[]>(products);
   useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { const rows = j.content?.["Productos"]; if (Array.isArray(rows) && rows.length) setCatalog(rows.map((p: {name:string;detail?:string;line?:string;status?:string;value?:string;image?:string;price?:string;colors?:string;sizes?:string}) => ({name:p.name,line:p.line || "Revuelo",description:p.detail || "",image:p.image || photoForLine(p.line || "Revuelo"),stock:p.value || p.status || "Consultar stock",price:p.price || "",colors:p.colors || "Consultar colores",sizes:p.sizes || "Consultar medidas"}))); }).catch(() => {}); }, []);
-  const photoForLine=(line:string)=>line==="Maqui"?"/images/subleva/products/maqui-principal.jpg":line==="Insumos"?"/images/subleva/products/20260805_165700.jpg":"/images/subleva/products/revuelo-principal.jpg";
+  const photoForLine=(line:string)=>line==="Maqui"?"/images/subleva/products/maqui-principal.jpg":line==="Insumos"?"":"/images/subleva/products/revuelo-principal.jpg";
   const filters = useMemo(() => ["Todos", ...Array.from(new Set(catalog.map(p => p.line).filter(Boolean)))], [catalog]);
   const shown = useMemo(() => filter === "Todos" ? catalog : catalog.filter(p => p.line === filter), [filter, catalog]);
   const card: React.CSSProperties = {background:"#fffdf8",border:"1px solid rgba(37,35,34,.14)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column"};
@@ -36,7 +36,7 @@ export default function ProductCatalog() {
     <div className="product-catalog-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(min(100%,230px),1fr))",gap:16}}>
       {shown.map(p=><article key={p.name} style={card}>
         <div style={{aspectRatio:"4/3",background:"#f0e8d4",display:"grid",placeItems:"center",overflow:"hidden"}}>
-          <img src={p.image || photoForLine(p.line)} alt={p.name} loading="lazy" style={{width:"100%",height:"100%",objectFit:"cover"}}/>
+          {(p.image || photoForLine(p.line)) ? <img src={p.image || photoForLine(p.line)} alt={p.name} loading="lazy" style={{width:"100%",height:"100%",objectFit:"cover"}}/> : <div style={{padding:20,textAlign:"center",color:"#625d55",fontSize:12}}>Sin foto original cargada</div>}
         </div>
         <div style={{padding:16,display:"flex",flexDirection:"column",alignItems:"flex-start",flex:1}}>
           <span style={{fontSize:10,fontWeight:800,letterSpacing:".12em",textTransform:"uppercase",color:"#75669e"}}>{p.line}</span>
