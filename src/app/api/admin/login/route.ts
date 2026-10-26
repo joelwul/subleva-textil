@@ -1,0 +1,4 @@
+import { NextResponse } from "next/server";
+import { createSession, isAdminConfigured, sessionCookieName } from "@/lib/admin-store";
+import { timingSafeEqual } from "node:crypto";
+export async function POST(request:Request){if(!isAdminConfigured())return NextResponse.json({error:"El administrador aún no está configurado en el servidor."},{status:503});let body:{password?:string};try{body=await request.json()}catch{return NextResponse.json({error:"Solicitud inválida."},{status:400})}const expected=process.env.ADMIN_PASSWORD||"",received=body.password||"";const a=Buffer.from(expected),b=Buffer.from(received);if(a.length!==b.length||!timingSafeEqual(a,b))return NextResponse.json({error:"Contraseña incorrecta."},{status:401});const response=NextResponse.json({ok:true});response.cookies.set(sessionCookieName,createSession(),{httpOnly:true,secure:process.env.NODE_ENV==="production",sameSite:"strict",path:"/",maxAge:8*60*60});return response;}
