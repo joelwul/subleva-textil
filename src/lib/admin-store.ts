@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { createHmac, timingSafeEqual } from "node:crypto";
-export type AdminItem = { id:string; name:string; detail:string; status:string; value:string; image?:string; date?:string; start?:string; end?:string };
+export type AdminItem = { id:string; name:string; detail:string; status:string; value:string; image?:string; date?:string; dateEnd?:string; start?:string; end?:string; line?:string; featured?:boolean; kind?:string; address?:string; phone?:string; contact?:string; materials?:string; website?:string; price?:string; colors?:string; sizes?:string };
 export type SectionKey = "Productos" | "Talleres" | "Agenda coworking" | "Máquinas y herramientas" | "Puntos verdes";
 export const sectionKeys: SectionKey[] = ["Productos","Talleres","Agenda coworking","Máquinas y herramientas","Puntos verdes"];
 const COOKIE = "subleva_admin_session";
