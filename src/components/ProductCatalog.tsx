@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 const WA = "https://wa.me/5491124078491?text=";
-type Product = { name: string; line: "Revuelo" | "Maqui" | "Insumos"; description: string; image: string; stock: string; colors: string; sizes: string };
+type Product = { name: string; line: string; description: string; image: string; stock: string; colors: string; sizes: string };
 const products: Product[] = [
   {name:"Riñonera 30 litros Revuelo",line:"Revuelo",description:"Riñonera confeccionada a partir de materiales reutilizados. Consultá disponibilidad y detalles.",image:"/images/subleva/products/revuelo-principal.jpg",stock:"Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"},
   {name:"Riñonera 40 litros Revuelo",line:"Revuelo",description:"Accesorio de gran capacidad elaborado mediante suprarreciclaje textil.",image:"/images/subleva/products/revuelo-principal.jpg",stock:"Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"},
@@ -19,12 +19,13 @@ const products: Product[] = [
   {name:"Hilo",line:"Insumos",description:"Hilos para trabajos textiles. Consultá tipos y colores disponibles.",image:"",stock:"Consultar stock",colors:"Consultar colores",sizes:"Consultar grosor"},
   {name:"Agujas",line:"Insumos",description:"Agujas para trabajos de confección. Consultá tipo y disponibilidad.",image:"",stock:"Consultar stock",colors:"No aplica",sizes:"Tipo a confirmar"}
 ];
-const filters = ["Todos", "Revuelo", "Maqui", "Insumos"] as const;
+
 
 export default function ProductCatalog() {
-  const [filter, setFilter] = useState<(typeof filters)[number]>("Todos");
+  const [filter, setFilter] = useState("Todos");
   const [catalog, setCatalog] = useState<Product[]>(products);
   useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { const rows = j.content?.["Productos"]; if (Array.isArray(rows) && rows.length) setCatalog(rows.map((p: {name:string;detail?:string;line?:string;status?:string;value?:string;image?:string}) => ({name:p.name,line:p.line === "Maqui" || p.line === "Insumos" ? p.line : "Revuelo",description:p.detail || "",image:p.image || "",stock:p.value || p.status || "Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"}))); }).catch(() => {}); }, []);
+  const filters = useMemo(() => ["Todos", ...Array.from(new Set(catalog.map(p => p.line).filter(Boolean)))], [catalog]);
   const shown = useMemo(() => filter === "Todos" ? catalog : catalog.filter(p => p.line === filter), [filter, catalog]);
   const card: React.CSSProperties = {background:"#fffdf8",border:"1px solid rgba(37,35,34,.14)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column"};
   const detail: React.CSSProperties = {fontSize:12,color:"#625d55",lineHeight:1.5,margin:"5px 0"};
