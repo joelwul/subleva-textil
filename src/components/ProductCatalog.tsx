@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const WA = "https://wa.me/5491124078491?text=";
 type Product = { name: string; line: "Revuelo" | "Maqui" | "Insumos"; description: string; image: string; stock: string; colors: string; sizes: string };
@@ -23,7 +23,9 @@ const filters = ["Todos", "Revuelo", "Maqui", "Insumos"] as const;
 
 export default function ProductCatalog() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("Todos");
-  const shown = useMemo(() => filter === "Todos" ? products : products.filter(p => p.line === filter), [filter]);
+  const [catalog, setCatalog] = useState<Product[]>(products);
+  useEffect(() => { fetch("/api/public-content", { cache: "no-store" }).then(r => r.json()).then(j => { const rows = j.content?.["Productos"]; if (Array.isArray(rows) && rows.length) setCatalog(rows.map((p: {name:string;detail?:string;line?:string;status?:string;value?:string;image?:string}) => ({name:p.name,line:p.line === "Maqui" || p.line === "Insumos" ? p.line : "Revuelo",description:p.detail || "",image:p.image || "",stock:p.value || p.status || "Consultar stock",colors:"Consultar colores",sizes:"Consultar medidas"}))); }).catch(() => {}); }, []);
+  const shown = useMemo(() => filter === "Todos" ? catalog : catalog.filter(p => p.line === filter), [filter, catalog]);
   const card: React.CSSProperties = {background:"#fffdf8",border:"1px solid rgba(37,35,34,.14)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column"};
   const detail: React.CSSProperties = {fontSize:12,color:"#625d55",lineHeight:1.5,margin:"5px 0"};
   return <section style={{padding:"24px 0 60px"}}>
