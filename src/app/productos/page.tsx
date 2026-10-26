@@ -1,10 +1,44 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Shell, ContentPage, ContactCTA } from "@/components/Site";
-export const metadata: Metadata = { title: "Productos Â· Revuelo + Maqui" };
-const WA = "https://wa.me/5491124078491?text=";
-export default function Page() { return <Shell><ContentPage eyebrow="PRODUCTOS Â· REVUELO + MAQUI" title="Vestir, usar y consumir tambiÃ©n es polÃ­tico." intro="Nuestras lÃ­neas nacen de la bÃºsqueda de formas de producciÃ³n mÃ¡s responsables con el ambiente y con las personas que trabajan en la industria textil. Recuperamos materiales, valoramos los procesos artesanales y buscamos que las cosas duren."><>
-<section className="product-line-detail product-line-revuelo"><div className="product-line-image"><img src="/images/subleva/products/revuelo-principal.jpg" alt="Producto Revuelo realizado con materiales recuperados"/><span>80 %<small>DE MATERIALES<br/>REUTILIZADOS</small></span></div><div className="product-line-copy"><p className="eyebrow">REVUELO Â· MATERIALES RECUPERADOS</p><h2>Producir es polÃ­tico.</h2><p>Revuelo nace de la necesidad de transformar lo que sobra y abunda en materia de cuidado y comunidad. DiseÃ±amos y producimos textiles a partir de materiales recuperados, con un 80 % de materiales reutilizados.</p><p>Cada retazo guarda la memoria de otros tiempos y nos invita a imaginar nuevas formas de habitar el mundo. Creemos en la magia de unir lo que parecÃ­a perdido y en producir para que las cosas duren.</p><p>Vestir es polÃ­tico. Consumir es polÃ­tico. Nuestros productos estÃ¡n hechos por nuestras manos cooperativas, de manera responsable y Ã©tica. Con cada compra, te llevÃ¡s una garantÃ­a de reparaciÃ³n.</p><a className="button button-dark" href={`${WA}${encodeURIComponent("Hola, quiero conocer los productos Revuelo disponibles.")}`} target="_blank" rel="noreferrer">Consultar por Revuelo â†—</a></div></section>
-<section className="product-line-detail product-line-maqui"><div className="product-line-image"><img src="/images/subleva/products/maqui-principal.jpg" alt="Producto Maqui de algodÃ³n teÃ±ido con tintes naturales"/><span>MAQUI<small>COLOR DE ORIGEN<br/>NATURAL</small></span></div><div className="product-line-copy"><p className="eyebrow">MAQUI Â· INDUMENTARIA Y ACCESORIOS</p><h2>Color que nace de la tierra.</h2><p>Maqui es nuestra lÃ­nea de indumentaria y accesorios confeccionados en algodÃ³n teÃ±ido con tintes naturales, mediante procesos artesanales mÃ¡s respetuosos con el ambiente.</p><p>DiseÃ±amos y producimos desde una perspectiva de cero desperdicio, buscando aprovechar al mÃ¡ximo los materiales y reducir los residuos textiles.</p><a className="button button-dark" href={`${WA}${encodeURIComponent("Hola, quiero conocer los productos Maqui disponibles.")}`} target="_blank" rel="noreferrer">Consultar por Maqui â†—</a></div></section>
-<section className="product-values"><p className="eyebrow">UNA MISMA FORMA DE HACER</p><h2>DiseÃ±ar, recuperar, reparar.<br/><em>Volver a empezar.</em></h2><p>Consultanos por los productos disponibles, variantes y formas de entrega. No publicamos precios ni stock hasta contar con informaciÃ³n actualizada del equipo.</p></section>
-</><ContactCTA title="Â¿BuscÃ¡s algo en particular?" text="Contanos quÃ© producto te interesa y te compartimos las opciones disponibles." message="Hola, quiero consultar por los productos de Subleva Textil." /></ContentPage></Shell>; }
+import ProductCatalog from "@/components/ProductCatalog";
 
+export const metadata: Metadata = { title: "Productos e insumos · Revuelo + Maqui" };
+
+export default function Page() {
+  return (
+    <Shell>
+      <ContentPage
+        eyebrow="PRODUCTOS E INSUMOS · REVUELO + MAQUI"
+        title="Productos textiles e insumos"
+        intro="Nuestras líneas de productos nacen de la búsqueda de formas de producción más responsables con el ambiente y con las personas que trabajan en la industria textil. A través del diseño, la recuperación de materiales y los procesos artesanales, ponemos en valor el trabajo cooperativo, el aprovechamiento de los recursos y el consumo consciente."
+      >
+        <>
+          <section className="product-line-detail product-line-revuelo">
+            <div className="product-line-image">
+              <img src="/images/subleva/products/revuelo-principal.jpg" alt="Productos Revuelo confeccionados con materiales reutilizados" />
+              <span>80 %<small>DE MATERIALES<br />REUTILIZADOS</small></span>
+            </div>
+            <div className="product-line-copy">
+              <p className="eyebrow">REVUELO · SUPRARRECICLAJE</p>
+              <h2>Revuelo</h2>
+              <p>Nuestra línea de indumentaria y accesorios elaborada con más de un 80 % de materiales reutilizados. Diseñamos prendas duraderas a partir de procesos de suprarreciclaje y producción cooperativa.</p>
+            </div>
+          </section>
+          <section className="product-line-detail product-line-maqui">
+            <div className="product-line-image">
+              <img src="/images/subleva/products/maqui-principal.jpg" alt="Productos Maqui de algodón teñido con tintes naturales" />
+              <span>MAQUI<small>PROCESOS<br />ARTESANALES</small></span>
+            </div>
+            <div className="product-line-copy">
+              <p className="eyebrow">MAQUI · CERO DESPERDICIO</p>
+              <h2>Maqui</h2>
+              <p>Nuestra línea de accesorios de cero desperdicio en algodón teñido con tintes naturales mediante procesos artesanales respetuosos del ambiente.</p>
+            </div>
+          </section>
+          <ProductCatalog />
+        </>
+      </ContentPage>
+      <ContactCTA title="¿Buscás un artículo en particular?" text="Consultanos por precio, stock, colores, talles y disponibilidad." message="Hola, quiero consultar por productos e insumos de Subleva Textil." />
+    </Shell>
+  );
+}
