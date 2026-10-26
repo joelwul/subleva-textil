@@ -81,6 +81,7 @@ export function HomePage() {
       </div>
     </div>
     <div className="concept-ribbon" aria-label="Diseño consciente, materiales en movimiento, trabajo cooperativo y economía circular"><div className="concept-ribbon-track">{[0,1].map(n=><span className="concept-ribbon-set" key={n}><b>DISEÑO CONSCIENTE</b><i>✳</i><b>MATERIALES EN MOVIMIENTO</b><i>⌁</i><b>TRABAJO COOPERATIVO</b><i>✳</i><b>ECONOMÍA CIRCULAR</b><i>⌁</i></span>)}</div></div>
+    <TextileGuard pattern="onda" className="guard-hero"/>
   </section>
 
 
