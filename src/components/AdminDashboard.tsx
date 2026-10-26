@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 type Item={id:string;name:string;detail:string;status:string;value:string;image?:string;line?:string;date?:string;dateEnd?:string;start?:string;end?:string;featured?:boolean;kind?:string};
 type SectionKey="Productos"|"Talleres"|"Agenda coworking"|"Máquinas y herramientas"|"Puntos verdes";
 type Store=Record<SectionKey,Item[]>;
