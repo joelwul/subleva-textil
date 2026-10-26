@@ -720,3 +720,16 @@ body{font-family:Montserrat,Arial,Helvetica,sans-serif}
 .admin-editor-panel .admin-feature-toggle input{width:18px;height:18px;flex:none;accent-color:#456548}
 @media(max-width:900px){.doors-section{grid-template-columns:1fr!important}.door-grid{max-width:100%!important}.admin-today-list>button{grid-template-columns:85px minmax(0,1fr)}}
 @media(max-width:600px){.door-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.door-grid>.door-card{grid-column:span 1!important;min-height:245px!important;padding:19px 15px!important}.door-grid>.door-card:nth-child(4){grid-column:1!important}.door-grid>.door-card:nth-child(5){grid-column:2!important}.door-grid>.door-card h3{font-size:20px!important}.admin-login-shell{padding:22px 14px!important}.admin-login-card{padding:26px 21px!important}.admin-new-line{grid-template-columns:1fr}.admin-calendar-panel{padding:15px 11px}.admin-calendar-grid{gap:3px}.admin-calendar-day{border-radius:5px}.admin-calendar-day i{bottom:3px}.admin-today-list>button{grid-template-columns:1fr;gap:5px}}
+
+
+/* Restauración solicitada: cinco puertas a ancho completo, con jerarquía editorial fuerte */
+.doors-section{display:block!important;width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important}
+.doors-intro{max-width:900px!important;margin:0 auto clamp(30px,5vw,58px)!important}
+.door-grid{width:100vw!important;max-width:none!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;padding:0 clamp(12px,2vw,28px)!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important;align-items:stretch!important}
+.door-grid>.door-card,.door-grid>.door-card:nth-child(4),.door-grid>.door-card:nth-child(5){grid-column:auto!important;min-height:clamp(310px,34vw,470px)!important;padding:clamp(18px,2vw,30px)!important}
+.door-grid>.door-card h3{font-size:clamp(17px,1.5vw,24px)!important;max-width:14ch!important}
+.door-grid>.door-card p{font-size:clamp(11px,.9vw,13px)!important;max-width:30ch!important}
+.admin-structured-fields{display:grid;gap:12px;margin:12px 0 18px;padding:16px;border:1px solid #dedacd;border-radius:12px;background:#f7f4eb}
+.admin-structured-fields>.eyebrow{margin:0 0 2px}
+@media(max-width:980px){.door-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.door-grid>.door-card,.door-grid>.door-card:nth-child(4),.door-grid>.door-card:nth-child(5){min-height:300px!important}}
+@media(max-width:600px){.door-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:0 12px!important;gap:9px!important}.door-grid>.door-card,.door-grid>.door-card:nth-child(4),.door-grid>.door-card:nth-child(5){min-height:260px!important;padding:17px 14px!important}.door-grid>.door-card h3{font-size:19px!important}}
