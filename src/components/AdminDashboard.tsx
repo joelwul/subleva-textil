@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 type Item={id:string;name:string;detail:string;status:string;value:string;image?:string;line?:string;date?:string;dateEnd?:string;start?:string;end?:string;featured?:boolean;kind?:string};
 type SectionKey="Productos"|"Talleres"|"Agenda coworking"|"Máquinas y herramientas"|"Puntos verdes";
 type Store=Record<SectionKey,Item[]>;
@@ -16,7 +16,7 @@ export default function AdminDashboard(){
  async function logout(){await fetch("/api/admin/logout",{method:"POST"});setLogged(false);setData(empty);setNotice("Sesión cerrada.")}
  function reset(){setName("");setDetail("");setValue("");setStatus(active==="Talleres"?"Publicado":"Disponible");setImage("");setLine(productLines[0]||"Revuelo");setNewLine("");setDate(todayKey);setDateEnd(todayKey);setStart("09:00");setEnd("10:00");setKind("Regular");setFeatured(false);setEditing(null)}
  async function persist(next:Store){setBusy(true);setError("");setNotice("");try{const r=await fetch("/api/admin/content",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({content:next})});const j=await r.json();if(!r.ok)throw new Error(j.error||"No se pudo guardar");setData(next);setNotice("Guardado. La información se comparte entre dispositivos.");reset()}catch(e){setError(e instanceof Error?e.message:"Error al guardar")}finally{setBusy(false)}}
- const productLines=useMemo(()=>Array.from(new Set(["Revuelo","Maqui","Insumos",...data.Productos.map(x=>x.line||"").filter(Boolean),...customLines])),[data.Productos,customLines]);
+ const productLines=Array.from(new Set(["Revuelo","Maqui","Insumos",...data.Productos.map(x=>x.line||"").filter(Boolean),...customLines]));
  function save(){if(!name.trim()){setError("El nombre es obligatorio.");return}if(active==="Agenda coworking"&&dateEnd<date){setError("La fecha final no puede ser anterior a la inicial.");return}if(active==="Agenda coworking"&&end<=start){setError("La hora de finalización debe ser posterior a la hora de inicio.");return}if(active==="Productos"&&newLine.trim()&&!productLines.includes(newLine.trim())){setError("Primero guardá la nueva línea desde el campo Línea de producto.");return}
  const row:Item={id:editing||globalThis.crypto.randomUUID(),name:name.trim(),detail:detail.trim(),status,value:value.trim(),image,line:active==="Productos"?line:undefined,date:active==="Agenda coworking"||(active==="Talleres"&&kind==="Seminario puntual")?date:undefined,dateEnd:active==="Agenda coworking"||(active==="Talleres"&&kind==="Seminario puntual")?dateEnd:undefined,start:active==="Agenda coworking"?start:undefined,end:active==="Agenda coworking"?end:undefined,kind:active==="Talleres"?kind:undefined,featured:active==="Productos"||active==="Talleres"?featured:undefined};
  let rows=editing?data[active].map(x=>x.id===editing?row:x):[row,...data[active]];
@@ -25,7 +25,7 @@ export default function AdminDashboard(){
  function edit(x:Item){setEditing(x.id);setName(x.name);setDetail(x.detail);setValue(x.value||"");setStatus(x.status);setImage(x.image||"");setLine(x.line||productLines[0]||"Revuelo");setNewLine("");setDate(x.date||todayKey);setDateEnd(x.dateEnd||x.date||todayKey);setStart(x.start||"09:00");setEnd(x.end||"10:00");setKind(x.kind||"Regular");setFeatured(Boolean(x.featured));document.getElementById("admin-editor")?.scrollIntoView({behavior:"smooth",block:"center"})}
  function remove(id:string){if(!confirm("¿Eliminar este registro de forma permanente?"))return;void persist({...data,[active]:data[active].filter(x=>x.id!==id)})}
  async function handleImage(file?:File){if(!file)return;if(!file.type.startsWith("image/")){setError("Elegí un archivo de imagen.");return}if(file.size>1500000){setError("La imagen supera 1,5 MB. Reducí su tamaño antes de subirla.");return}const reader=new FileReader();reader.onload=()=>{setImage(String(reader.result||""));setError("")};reader.onerror=()=>setError("No se pudo leer la imagen.");reader.readAsDataURL(file)}
- const total=useMemo(()=>keys.reduce((n,k)=>n+data[k].length,0),[data]);
+ const total=keys.reduce((n,k)=>n+data[k].length,0);
  const calendarDays=useMemo(()=>{const first=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth(),1),offset=(first.getDay()+6)%7,count=new Date(calendarMonth.getFullYear(),calendarMonth.getMonth()+1,0).getDate();return [...Array(offset).fill(0),...Array.from({length:count},(_,i)=>i+1)]},[calendarMonth]);
  const calendarKey=(d:number)=>calendarMonth.getFullYear()+"-"+String(calendarMonth.getMonth()+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
  const isToday=(x:Item)=>Boolean(x.date&&x.date<=todayKey&&(x.dateEnd||x.date)>=todayKey&&x.status!=="Bloqueado");
