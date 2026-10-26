@@ -605,3 +605,49 @@ body{font-family:Montserrat,Arial,Helvetica,sans-serif}
 .cowork-photo-pair img+img{margin-top:35px;height:calc(100% - 35px)}
 @media(max-width:760px){.hero-slideshow{inset:0}.hero-slide{background-position:center!important}.hero-slide:after{background:linear-gradient(180deg,rgba(240,232,212,.84) 0%,rgba(240,232,212,.79) 48%,rgba(240,232,212,.55) 100%)}.green-map-visual{min-height:320px!important}.green-map-overlay{inset:6% 5% 13% 2%!important;width:90%!important;height:80%!important}.green-map-caption{font-size:7px!important}.pvt-directory{padding:22px 16px;border-radius:18px}.pvt-directory-grid{grid-template-columns:1fr}.pvt-point-details{padding-left:18px}.cowork-photo-pair{grid-template-columns:1fr 1fr;gap:8px}.cowork-photo-pair img{min-height:190px;max-height:260px;border-radius:12px}.cowork-photo-pair img+img{margin-top:20px;height:calc(100% - 20px)}}
 @media(prefers-reduced-motion:reduce){.hero-slide{animation:none!important}.hero-slide-1{opacity:1;transform:none}.hero-slide:not(.hero-slide-1){display:none}}
+
+
+/* V11 · Sistema gráfico "El hilo que conecta" */
+.textile-guard{display:block;width:100%;height:22px;color:#456548;background-color:currentColor;mask-repeat:repeat-x;-webkit-mask-repeat:repeat-x;mask-position:left center;-webkit-mask-position:left center;mask-size:auto 100%;-webkit-mask-size:auto 100%;pointer-events:none;opacity:.72}
+.guard-hero{position:absolute;left:0;right:0;bottom:0;height:18px;z-index:2;color:#456548;opacity:.62;animation:guard-reveal 1.2s ease-out both}
+.guard-story{width:150px;height:20px;margin:14px 0 22px;color:#b6afd7;mask-size:auto 100%;-webkit-mask-size:auto 100%}
+.guard-doors{width:160px;height:17px;margin:20px 0 26px;color:#547052;mask-size:auto 100%;-webkit-mask-size:auto 100%}
+.guard-workshops{width:170px;height:18px;margin:-12px 0 24px;color:#252322;mask-size:auto 100%;-webkit-mask-size:auto 100%}
+.guard-products{width:190px;height:18px;margin:0 0 25px;color:#252322;mask-size:auto 100%;-webkit-mask-size:auto 100%}
+.guard-services{width:170px;height:20px;margin:24px 0 0;color:#456548;mask-size:auto 100%;-webkit-mask-size:auto 100%}
+.guard-between-services{height:19px;width:100%;margin:25px 0 30px;color:#b6afd7;mask-size:auto 100%;-webkit-mask-size:auto 100%}
+.guard-green{width:200px;height:24px;margin:16px 0 24px;color:#456548;mask-size:auto 100%;-webkit-mask-size:auto 100%;opacity:.9}
+.guard-pvt-page{height:26px;margin:0 0 30px;color:#456548;mask-size:auto 100%;-webkit-mask-size:auto 100%;opacity:.9}
+.guard-contact{position:absolute;left:0;right:0;top:0;height:22px;color:#b6afd7;mask-size:auto 100%;-webkit-mask-size:auto 100%;opacity:.7}
+.story-section{position:relative}
+.doors-section,.workshops-preview,.products-showcase,.services-preview,.green-preview,.contact-strip{position:relative}
+.contact-strip{padding-top:45px!important}
+.services-intro-editorial{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.85fr);align-items:center;gap:clamp(22px,5vw,60px);margin:20px 0 38px}
+.services-intro-copy p{max-width:680px;font-size:clamp(17px,2vw,21px);line-height:1.65}
+.services-workshop-photo{display:block;width:100%;height:clamp(220px,30vw,370px);object-fit:cover;border-radius:18px}
+.services-intro-stitch{display:none}
+.inner-hero h1{max-width:950px;line-height:1.12;letter-spacing:-.035em;text-wrap:balance;overflow-wrap:normal;word-break:normal}
+.inner-hero>p:last-child{max-width:780px;line-height:1.7}
+.pvt-hero-panel{margin-top:20px}
+.cowork-calendar{margin:clamp(45px,8vw,90px) 0;padding:clamp(22px,5vw,48px);border-radius:24px;background:#f1eee3;border:1px solid rgba(37,35,34,.12)}
+.cowork-calendar-heading{max-width:700px;margin-bottom:28px}
+.cowork-calendar-heading h2{font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.04em;margin:10px 0}
+.cowork-calendar-heading>p:last-child{line-height:1.65;color:#656157}
+.cowork-calendar-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px;align-items:stretch}
+.calendar-board,.calendar-slots{background:#fffdf7;border:1px solid #d9d7ca;border-radius:16px;padding:clamp(15px,3vw,25px);min-width:0}
+.calendar-board>header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.calendar-board>header strong{text-transform:capitalize;font-size:17px}
+.calendar-board>header button{border:1px solid #d3d8c9;background:#edf0e7;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;color:#354b34}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.calendar-weekday{font-size:11px;font-weight:900;color:#76766a;text-align:center;padding:7px 0}
+.calendar-day{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;aspect-ratio:1;border:1px solid transparent;border-radius:10px;background:transparent;color:#252322;cursor:pointer;font:inherit}
+.calendar-day:hover{background:#e9eddf}.calendar-day.selected{background:#456548;color:#fffdf7}.calendar-day i{position:absolute;bottom:5px;left:calc(50% - 3px);width:6px;height:6px;border-radius:50%}.available-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#65966b;flex:none}.busy-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#ba8b69;flex:none}.calendar-day.selected .available-dot,.calendar-day.selected .busy-dot{background:#fffdf7}
+.calendar-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;padding-top:14px;border-top:1px solid #e4e1d7}.calendar-legend span{display:flex;align-items:center;gap:6px;font-size:10px;color:#646456}
+.calendar-slots>.eyebrow{margin:0 0 7px}.calendar-slots h3{font-size:clamp(19px,2vw,25px);line-height:1.2;text-transform:capitalize;margin:0 0 18px}
+.calendar-empty{display:grid;gap:8px;align-content:center;min-height:170px;color:#6b6a5d}.calendar-empty>span{font-size:30px;color:#a7b59c}.calendar-empty p{margin:0;color:#34372f}.calendar-empty small{line-height:1.5}.calendar-empty a,.calendar-slot>a{color:#365c38;font-size:12px;font-weight:900;text-underline-offset:3px}
+.calendar-slot-list{display:grid;gap:9px}.calendar-slot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;padding:13px;border:1px solid #e0e1d7;border-radius:12px}.calendar-slot strong{font-size:14px}.calendar-slot p{font-size:12px;margin:5px 0;color:#4f5047}.calendar-slot small{font-size:11px;line-height:1.45;color:#757467}.slot-status{align-self:start;padding:5px 8px;border-radius:99px;font-size:10px;font-weight:800;white-space:nowrap}.slot-status.free{background:#e4efdf;color:#3e693f}.slot-status.busy{background:#f1e4d9;color:#8b583c}.calendar-slot>a{grid-column:1/-1;justify-self:start}
+.admin-login-card{width:min(100% - 32px,480px);margin:clamp(40px,9vh,100px) auto;background:#fffdf7;border:1px solid rgba(37,35,34,.15);border-radius:20px;padding:clamp(24px,5vw,44px);box-shadow:0 20px 60px rgba(37,35,34,.08)}
+.admin-login-card h1{font-size:clamp(28px,4vw,38px);line-height:1.05;margin:12px 0}.admin-login-card>p:not(.eyebrow){color:#656157;line-height:1.6}.admin-login-card form{display:grid;gap:16px;margin-top:26px}.admin-login-card label,.admin-editor-panel label{display:grid;gap:7px;font-size:12px;font-weight:800;color:#4c4a40}.admin-login-card input,.admin-editor-panel input,.admin-editor-panel textarea,.admin-editor-panel select{width:100%;min-width:0;padding:12px 13px;border:1px solid #d3d0c5;border-radius:9px;background:#fffefa;color:#252322;font:inherit;font-size:14px}.admin-error{padding:12px 14px;border-radius:9px;background:#f5e2db;color:#8b3829;font-size:13px}.admin-success{padding:12px 14px;border-radius:9px;background:#e4efdf;color:#315c34;font-size:13px}.admin-time-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@keyframes guard-reveal{from{clip-path:inset(0 100% 0 0);opacity:.1}to{clip-path:inset(0 0 0 0);opacity:.65}}
+@media(max-width:760px){.services-intro-editorial{grid-template-columns:1fr}.services-workshop-photo{height:250px}.cowork-calendar{padding:20px 13px;border-radius:17px}.cowork-calendar-layout{grid-template-columns:1fr}.calendar-board,.calendar-slots{padding:16px}.calendar-day{border-radius:7px}.calendar-day i{bottom:4px}.calendar-slot{grid-template-columns:minmax(0,1fr)}.slot-status{justify-self:start}.calendar-slot>a{grid-column:1}.guard-contact{height:16px}.contact-strip{padding-top:35px!important}}
+@media(prefers-reduced-motion:reduce){.guard-hero{animation:none}.textile-guard{scroll-behavior:auto}}
