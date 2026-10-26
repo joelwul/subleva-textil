@@ -57,6 +57,9 @@ const cards = [
 export function HomePage() {
  return <main>
   <section className="hero" id="inicio">
+    <div className="hero-slideshow" aria-label="Fotografías reales del trabajo de Subleva Textil">
+      {["hero-01.jpg","hero-02.jpg","hero-03.jpg","hero-04.jpg","hero-05.jpg","hero-06.jpg"].map((photo,i)=><div key={photo} className={`hero-slide hero-slide-${i+1}`} style={{backgroundImage:`url(/images/subleva/hero/${photo})`}} aria-hidden="true"/>)}
+    </div>
     <div className="hero-wash wash-one"/><div className="hero-wash wash-two"/><div className="hero-wash wash-three"/>
     <div className="orbit" aria-label="Fotografías textiles en movimiento">
       <div className="orbit-track">
@@ -79,6 +82,13 @@ export function HomePage() {
     <div className="concept-ribbon" aria-label="Diseño consciente, materiales en movimiento, trabajo cooperativo y economía circular"><div className="concept-ribbon-track">{[0,1].map(n=><span className="concept-ribbon-set" key={n}><b>DISEÑO CONSCIENTE</b><i>✳</i><b>MATERIALES EN MOVIMIENTO</b><i>⌁</i><b>TRABAJO COOPERATIVO</b><i>✳</i><b>ECONOMÍA CIRCULAR</b><i>⌁</i></span>)}</div></div>
   </section>
 
+
+  <section className="story-section" id="nosotras">
+    <div className="story-image" role="img" aria-label="Espacio creativo y trabajo manual"/>
+    <div className="story-copy"><p className="eyebrow">QUIÉNES SOMOS</p><h2>Una cooperativa que teje comunidad.</h2><p>Somos una cooperativa de diseño y producción textil en San Martín. Nos reúne una convicción: el trabajo, los saberes y los materiales pueden organizarse de otra manera.</p><p>Construimos en colectivo, recuperamos valor y conectamos producción, compromiso social y cuidado ambiental.</p><Link className="text-link" href="/quienes-somos">Conocé nuestra historia <span>↗</span></Link></div>
+    <div className="values-list"><p><span>↻</span> Economía circular</p><p><span>◌</span> Trabajo cooperativo</p><p><span>⌖</span> Producción local</p><p><span>♧</span> Compromiso ambiental</p></div>
+  </section>
+
   <section className="doors-section section-pad" id="caminos">
     <div className="doors-intro"><p className="eyebrow">HAY MUCHAS FORMAS DE ENCONTRARNOS</p><h2>Descubrí todo lo que podemos hacer juntos.</h2><p>Aprender una técnica, desarrollar una idea, encontrar un espacio de trabajo o darle otra vida a los textiles. Elegí por dónde empezar: cada puerta abre una forma distinta de ser parte de Subleva.</p></div>
     <div className="door-grid">{doors.map(d=><Link className={`door-card ${d.className}`} href={d.href} key={d.n}><span className="door-number">{d.n} / 05</span><span className="door-symbol">{d.symbol}</span><h3>{d.title}</h3><p>{d.desc}</p><span className="door-arrow">Descubrir <b>↗</b></span></Link>)}</div>
@@ -86,11 +96,6 @@ export function HomePage() {
 
   <section className="workshops-preview section-pad" id="talleres-home"><div className="section-heading"><div><p className="eyebrow">TALLERES · SABERES QUE CIRCULAN</p><h2>Aprender con las manos. Compartir lo que sabemos.</h2></div><Link className="text-link" href="/talleres">Ver todos los talleres <span>↗</span></Link></div><WorkshopCards compact /></section>
 
-  <section className="story-section" id="nosotras">
-    <div className="story-image" role="img" aria-label="Espacio creativo y trabajo manual"/>
-    <div className="story-copy"><p className="eyebrow">QUIÉNES SOMOS</p><h2>Una cooperativa que teje comunidad.</h2><p>Somos una cooperativa de diseño y producción textil en San Martín. Nos reúne una convicción: el trabajo, los saberes y los materiales pueden organizarse de otra manera.</p><p>Construimos en colectivo, recuperamos valor y conectamos producción, compromiso social y cuidado ambiental.</p><Link className="text-link" href="/quienes-somos">Conocé nuestra historia <span>↗</span></Link></div>
-    <div className="values-list"><p><span>↻</span> Economía circular</p><p><span>◌</span> Trabajo cooperativo</p><p><span>⌖</span> Producción local</p><p><span>♧</span> Compromiso ambiental</p></div>
-  </section>
 
   <section className="products-showcase section-pad" id="productos-preview"><div className="section-heading"><div><p className="eyebrow">UN PRIMER VISTAZO · REVUELO + MAQUI</p><h2>Productos con otra historia.</h2><p className="products-lead">Diseñamos para aprovechar lo que existe, cuidar lo que hacemos y producir de otra manera.</p></div><Link className="text-link" href="/productos">Explorar todos los productos <span>↗</span></Link></div><div className="shop-grid"><article className="shop-product shop-product-feature"><Link href="/productos" className="shop-product-image shop-image-revuelo" aria-label="Conocer productos Revuelo"><img src="/images/subleva/products/revuelo-principal.jpg" alt="Producto Revuelo elaborado con materiales recuperados"/><span className="shop-tag">MATERIALES RECUPERADOS</span><span className="shop-bag" aria-hidden="true">↗</span></Link><div className="shop-product-copy"><p className="eyebrow">REVUELO · 80 % DE MATERIALES REUTILIZADOS</p><h3>Lo que sobra puede volver a tener valor.</h3><p>Textiles hechos por manos cooperativas, con garantía de reparación.</p><a className="shop-action" href={msg("Hola, quiero conocer los productos Revuelo disponibles.")} target="_blank" rel="noreferrer">Consultar producto <span>↗</span></a></div></article><article className="shop-product"><Link href="/productos" className="shop-product-image shop-image-maqui" aria-label="Conocer productos Maqui"><img src="/images/subleva/products/maqui-principal.jpg" alt="Producto Maqui confeccionado con algodón y tintes naturales"/><span className="shop-tag">TINTES NATURALES</span><span className="shop-bag" aria-hidden="true">↗</span></Link><div className="shop-product-copy"><p className="eyebrow">MAQUI · DISEÑO ARTESANAL</p><h3>Color que nace del proceso.</h3><p>Indumentaria y accesorios en algodón teñido con tintes naturales.</p><a className="shop-action" href={msg("Hola, quiero conocer los productos Maqui disponibles.")} target="_blank" rel="noreferrer">Consultar producto <span>↗</span></a></div></article><article className="shop-product shop-product-textile"><Link href="/productos" className="shop-product-image shop-image-accesorios" aria-label="Conocer accesorios textiles Revuelo"><img src="/images/subleva/products/accesorios-revuelo.jpg" alt="Accesorios textiles Revuelo hechos con materiales recuperados"/><span className="shop-tag">HECHO EN COLECTIVO</span><span className="shop-bag" aria-hidden="true">↗</span></Link><div className="shop-product-copy"><p className="eyebrow">REVUELO · ACCESORIOS</p><h3>Pequeños objetos, otra manera de producir.</h3><p>Accesorios textiles pensados para durar, reparar y seguir circulando.</p><a className="shop-action" href={msg("Hola, quiero consultar por los accesorios Revuelo disponibles.")} target="_blank" rel="noreferrer">Consultar producto <span>↗</span></a></div></article></div><p className="shop-note">La disponibilidad, las variantes y los precios se confirman con el equipo de Subleva.</p></section>
 
