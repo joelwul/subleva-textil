@@ -3,9 +3,9 @@ import { useEffect,useMemo,useState } from "react";
 type Slot={id:string;name:string;detail:string;status:string;value:string;date?:string;dateEnd?:string;start?:string;end?:string};
 export default function CoworkingCalendar(){
  const [slots,setSlots]=useState<Slot[]>([]);
- const [month,setMonth]=useState(()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),1)});
+ const [month,setMonth]=useState(new Date(2026,9,1));
  const [selected,setSelected]=useState("");
- useEffect(()=>{const d=new Date();setSelected(d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"));fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>setSlots(j.content?.["Agenda coworking"]||[])).catch(()=>setSlots([]))},[]);
+ useEffect(()=>{const d=new Date();setMonth(new Date(d.getFullYear(),d.getMonth(),1));setSelected(d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"));fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>setSlots(j.content?.["Agenda coworking"]||[])).catch(()=>setSlots([]))},[]);
  const days=useMemo(()=>{const first=new Date(month.getFullYear(),month.getMonth(),1);const start=(first.getDay()+6)%7;const count=new Date(month.getFullYear(),month.getMonth()+1,0).getDate();return [...Array(start).fill(null),...Array.from({length:count},(_,i)=>i+1)]},[month]);
  const key=(d:number)=>month.getFullYear()+"-"+String(month.getMonth()+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
  const covers=(s:Slot,k:string)=>Boolean(s.date&&s.date<=k&&(s.dateEnd||s.date)>=k);
