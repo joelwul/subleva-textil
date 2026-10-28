@@ -843,3 +843,79 @@ body{font-family:Montserrat,Arial,Helvetica,sans-serif}
  .admin-heading-actions{flex-direction:column;align-items:stretch}
  .admin-heading-actions button{width:100%}
 }
+
+
+/* V23 · Optimización exclusivamente móvil: escritorio sin cambios */
+@media (max-width: 600px) {
+  html, body { width:100%; max-width:100%; overflow-x:clip; }
+  *, *::before, *::after { box-sizing:border-box; }
+  img, video, iframe, svg { max-width:100%; }
+  main, section, footer, header { min-width:0; }
+  .site-header, .site-footer, .section-pad, .story-section,
+  .doors-section, .workshops-preview, .products-showcase,
+  .services-preview, .cowork-preview, .green-preview,
+  .instagram-section, .reviews-section { max-width:100%; min-width:0; }
+  .hero { overflow:hidden!important; padding-bottom:24px!important; min-height:0!important; }
+  .hero-slideshow { overflow:hidden!important; }
+  .hero-slide { display:none!important; animation:none!important; transform:none!important; }
+  .hero-slide-1 { display:block!important; opacity:1!important; background-position:58% center!important; }
+  .hero-slide-1:after { background:linear-gradient(90deg,rgba(240,232,212,.87),rgba(240,232,212,.45) 78%,rgba(240,232,212,.2))!important; }
+  .hero .orbit { display:none!important; }
+  .hero .hero-core { padding:52px 6% 42px!important; }
+  .hero .concept-ribbon { position:relative!important; z-index:4!important; width:100%!important; max-width:100%!important; margin:0!important; overflow:hidden!important; }
+  .concept-ribbon-track { width:max-content; max-width:none; }
+  .hero .guard-hero { margin-top:0!important; height:12px!important; }
+  .doors-section .doors-intro { margin-bottom:18px!important; }
+  .doors-section .doors-intro h2 { font-size:clamp(29px,8vw,37px)!important; }
+  .doors-section .door-grid { grid-template-columns:repeat(2,minmax(0,1fr))!important; gap:9px!important; padding:0 16px!important; }
+  .doors-section .door-grid>.door-card,
+  .doors-section .door-grid>.door-card:nth-child(4),
+  .doors-section .door-grid>.door-card:nth-child(5),
+  .doors-section .door-grid>.door-card:last-child {
+    grid-column:auto!important; display:flex!important; flex-direction:column!important;
+    min-height:0!important; padding:14px 12px!important; gap:0!important;
+  }
+  .doors-section .door-grid>.door-card .door-number { margin-bottom:8px!important; font-size:9px!important; }
+  .doors-section .door-grid>.door-card .door-symbol { width:34px!important;height:34px!important;margin:3px 0 9px!important;font-size:17px!important; }
+  .doors-section .door-grid>.door-card h3 { font-size:17px!important;line-height:1.08!important;margin:0 0 7px!important; }
+  .doors-section .door-grid>.door-card p { font-size:11px!important;line-height:1.4!important;margin:0 0 10px!important; }
+  .doors-section .door-grid>.door-card .door-arrow { padding-top:8px!important;font-size:10px!important;margin-top:auto!important; }
+  .workshops-preview .workshop-grid,
+  .products-showcase .shop-grid {
+    display:grid!important; grid-auto-flow:column!important; grid-auto-columns:minmax(76%, 76%)!important;
+    grid-template-columns:none!important; gap:12px!important; overflow-x:auto!important;
+    overflow-y:hidden!important; overscroll-behavior-x:contain; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; padding:2px 16px 14px!important;
+    margin:0 -16px!important; scrollbar-width:thin; scrollbar-color:#b5cca3 transparent;
+  }
+  .workshops-preview .workshop-grid .workshop-flyer,
+  .products-showcase .shop-grid .shop-product {
+    width:100%!important; min-width:0!important; max-width:none!important;
+    grid-column:auto!important; scroll-snap-align:start;
+  }
+  .workshops-preview .workshop-photo,
+  .workshops-preview .workshop-grid .workshop-flyer:last-child .workshop-photo { aspect-ratio:4/3!important; min-height:0!important; }
+  .workshops-preview .workshop-paper { padding:16px!important; }
+  .products-showcase .shop-product-image,
+  .products-showcase .shop-product-feature .shop-product-image { aspect-ratio:4/3!important; }
+  .cowork-preview { display:flex!important; flex-direction:column!important; gap:0!important; overflow:hidden!important; }
+  .cowork-preview .cowork-copy { order:0!important; padding:32px 20px 20px!important; }
+  .cowork-preview .cowork-photo { order:1!important; width:100%!important; min-height:240px!important; }
+  .cowork-preview .cowork-network { min-height:240px!important; }
+  .cowork-preview .cowork-facts { grid-template-columns:repeat(3,minmax(0,1fr))!important; }
+  .cowork-preview .cowork-facts>div { min-width:0!important; padding:10px 6px!important; }
+  .green-preview { grid-template-columns:minmax(0,1fr)!important; gap:22px!important; padding:42px 18px!important; }
+  .green-map-visual { width:100%!important; min-width:0!important; min-height:410px!important; height:410px!important; padding:8px!important; border-radius:18px!important; overflow:hidden!important; }
+  .green-map-overlay { inset:2% 1% 8% 0!important; width:99%!important; height:90%!important; }
+  .green-map-caption { flex-direction:column!important; align-items:flex-start!important; gap:5px!important; font-size:9px!important; padding:9px!important; }
+  .green-map-foot { font-size:9px!important; }
+  .instagram-grid { min-width:0!important; }
+  .instagram-post { min-width:0!important; max-width:100%!important; overflow:hidden!important; }
+  .footer-main, .footer-bottom, .bp-credit { min-width:0!important; overflow-wrap:anywhere!important; }
+}
+@media (max-width: 380px) {
+  .doors-section .door-grid { padding:0 12px!important;gap:7px!important; }
+  .doors-section .door-grid>.door-card { padding:12px 10px!important; }
+  .doors-section .door-grid>.door-card h3 { font-size:15px!important; }
+  .workshops-preview .workshop-grid,.products-showcase .shop-grid { grid-auto-columns:84%!important; }
+}
