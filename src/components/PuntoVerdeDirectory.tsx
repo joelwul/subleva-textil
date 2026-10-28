@@ -3,7 +3,7 @@ import { useEffect,useMemo,useState } from "react";
 type Point={id:string;name:string;detail?:string;value?:string;status:string;address?:string;phone?:string;contact?:string;materials?:string;website?:string};
 export default function PuntoVerdeDirectory(){
  const [managed,setManaged]=useState<Point[]>([]),[zone,setZone]=useState("Todos"),[query,setQuery]=useState(""),[expanded,setExpanded]=useState<string|null>(null);
- useEffect(()=>{fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>{if(Array.isArray(j.content?.["Puntos verdes"]))setManaged(j.content["Puntos verdes"].filter((x:Point)=>x.status==="Publicado"||x.status==="Disponible"))}).catch(()=>{})},[]);
+ useEffect(()=>{fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>{if(Array.isArray(j.content?.["Puntos verdes"]))setManaged(j.content["Puntos verdes"].filter((x:Point)=>x.status==="Publicado"||x.status==="Disponible"||(x.id?.startsWith("demo-pvt-")&&x.name?.startsWith("DEMO ·"))))}).catch(()=>{})},[]);
  const points=managed.map(p=>{const parts=(p.value||"").split("·").map(x=>x.trim());const address=p.address||parts[0]||"";const phone=p.phone||parts[1]||"";const materials=p.materials||parts.slice(2).join(" · ");return {id:p.id,name:p.name,detail:p.detail||"",address,phone,contact:p.contact||"",materials,website:p.website||"",zone:address.split(",").slice(-1)[0]?.trim()||"San Martín"}});
  const zones=["Todos",...Array.from(new Set(points.map(p=>p.zone)))];
  const filtered=useMemo(()=>points.filter(p=>(zone==="Todos"||p.zone===zone)&&(p.name+" "+p.address+" "+p.phone+" "+p.contact+" "+p.materials+" "+p.detail).toLowerCase().includes(query.toLowerCase())),[points,zone,query]);
