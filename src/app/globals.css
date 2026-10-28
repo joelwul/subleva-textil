@@ -919,3 +919,25 @@ body{font-family:Montserrat,Arial,Helvetica,sans-serif}
   .doors-section .door-grid>.door-card h3 { font-size:15px!important; }
   .workshops-preview .workshop-grid,.products-showcase .shop-grid { grid-auto-columns:84%!important; }
 }
+
+
+/* V24 — corregir hero y mapa móvil sin alterar escritorio */
+@media(max-width:600px){
+ .hero .orbit{display:block!important;position:relative!important;z-index:2!important;width:100%!important;height:auto!important;min-height:0!important}
+ .hero .orbit-track{display:none!important}
+ .hero .hero-core{display:block!important;position:relative!important;z-index:3!important;left:auto!important;top:auto!important;transform:none!important;width:100%!important;max-width:none!important;padding:58px 6% 42px!important}
+ .hero .hero-slideshow{z-index:0!important;inset:0!important;display:block!important}
+ .hero .hero-slide{display:block!important;opacity:0!important;animation:none!important;transform:none!important}
+ .hero .hero-slide-1{opacity:1!important}
+ .hero .hero-slide-1:after{background:linear-gradient(90deg,rgba(37,35,34,.64) 0%,rgba(37,35,34,.38) 55%,rgba(37,35,34,.18) 100%)!important}
+ .hero .hero-core h1{color:#fffdf7!important;text-shadow:0 2px 20px rgba(0,0,0,.32)!important;font-size:clamp(39px,11vw,58px)!important;line-height:.98!important;max-width:10ch!important}
+ .hero .hero-coop,.hero .hero-location,.hero .hero-description{color:#fffdf7!important;text-shadow:0 1px 10px rgba(0,0,0,.35)!important}
+ .hero .hero-description{font-size:15px!important;max-width:30ch!important}
+ .hero .concept-ribbon{position:relative!important;z-index:5!important}
+ .punto-verde-textil .pvt-directory,.pvt-directory{width:100vw!important;max-width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;border-radius:0!important;padding:24px 14px!important}
+ .pvt-directory-grid{grid-template-columns:minmax(0,1fr)!important}
+ .pvt-directory-heading,.pvt-directory-tools,.pvt-directory-grid{width:100%!important;min-width:0!important}
+ .pvt-directory .pvt-point-card{min-width:0!important}
+ .green-map-visual{width:100vw!important;max-width:100vw!important;margin-left:calc(50% - 50vw)!important;margin-right:calc(50% - 50vw)!important;height: min(100vw, 540px)!important;min-height:420px!important;border-radius:0!important;padding:4px!important}
+ .green-map-overlay{inset:0!important;width:100%!important;height:100%!important}
+}
