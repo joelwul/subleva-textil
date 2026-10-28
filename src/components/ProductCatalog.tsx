@@ -11,11 +11,22 @@ const initial:Product[] = [
  {name:"Remera Maqui",line:"Maqui",description:"Prenda de algodón teñido con tintes naturales y procesos artesanales.",image:"/images/subleva/products/maqui-principal.jpg",stock:"Consultar stock",colors:"Consultar colores",sizes:"Talles a confirmar"}
 ];
 
+function curatedImage(p:ManagedProduct):string {
+ if(p.image) return p.image;
+ const n=p.name.toLowerCase(), line=(p.line||"").toLowerCase();
+ if(n.includes("remera")||n.includes("maqui")||line==="maqui") return "/images/subleva/products/maqui-principal.jpg";
+ if(n.includes("accesorio")||n.includes("billetera")||n.includes("tabaquera")||n.includes("porta pinceles")) return "/images/subleva/products/accesorios-revuelo.jpg";
+ if(n.includes("crossbody")) return "/images/subleva/products/20260805_165810.jpg";
+ if(n.includes("buzo")) return "/images/subleva/products/20260805_170112.jpg";
+ if(n.includes("40 litros")) return "/images/subleva/products/20260805_170535.jpg";
+ if(n.includes("30 litros")||line==="revuelo") return "/images/subleva/products/revuelo-principal.jpg";
+ return "";
+}
 export default function ProductCatalog() {
  const [filter,setFilter]=useState("Todos");
  const [catalog,setCatalog]=useState<Product[]>(initial);
  const [loaded,setLoaded]=useState(false);
- useEffect(()=>{let alive=true;fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>{if(!alive)return;const rows=j.content?.["Productos"];if(Array.isArray(rows)&&rows.length){setCatalog(rows.filter((p:ManagedProduct)=>p.status==="Publicado"||p.status==="Disponible").map((p:ManagedProduct)=>({id:p.id,name:p.name,line:p.line||"Revuelo",description:p.detail||"",image:typeof p.image==="string"?p.image:"",stock:p.stock||p.value||p.status||"Consultar stock",price:p.price||"",colors:p.colors||"Consultar colores",sizes:p.sizes||"Consultar medidas"})))}setLoaded(true)}).catch(()=>setLoaded(true));return()=>{alive=false}},[]);
+ useEffect(()=>{let alive=true;fetch("/api/public-content",{cache:"no-store"}).then(r=>r.json()).then(j=>{if(!alive)return;const rows=j.content?.["Productos"];if(Array.isArray(rows)&&rows.length){setCatalog(rows.filter((p:ManagedProduct)=>p.status==="Publicado"||p.status==="Disponible").map((p:ManagedProduct)=>({id:p.id,name:p.name,line:p.line||"Revuelo",description:p.detail||"",image:curatedImage(p),stock:p.stock||p.value||p.status||"Consultar stock",price:p.price||"",colors:p.colors||"Consultar colores",sizes:p.sizes||"Consultar medidas"})))}setLoaded(true)}).catch(()=>setLoaded(true));return()=>{alive=false}},[]);
  const filters=useMemo(()=>["Todos",...Array.from(new Set(catalog.map(p=>p.line).filter(Boolean)))],[catalog]);
  const shown=useMemo(()=>filter==="Todos"?catalog:catalog.filter(p=>p.line===filter),[filter,catalog]);
  const card:React.CSSProperties={background:"#fffdf8",border:"1px solid rgba(37,35,34,.14)",borderRadius:12,overflow:"hidden",display:"flex",flexDirection:"column",minWidth:0};
