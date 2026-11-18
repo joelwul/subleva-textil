@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <Shell>
       <ContentPage
-        eyebrow="PRODUCTOS E INSUMOS · REVUELO + MAQUI"
+        eyebrow="REVUELO + MAQUI"
         title="Productos textiles e insumos"
         intro="Nuestras líneas de productos nacen de la búsqueda de formas de producción más responsables con el ambiente y con las personas que trabajan en la industria textil. A través del diseño, la recuperación de materiales y los procesos artesanales, ponemos en valor el trabajo cooperativo, el aprovechamiento de los recursos y el consumo consciente."
       >
@@ -21,7 +21,7 @@ export default function Page() {
             </div>
             <div className="product-line-copy">
               <p className="eyebrow">REVUELO · SUPRARRECICLAJE</p>
-              <h2>Revuelo</h2>
+              <h2 className="product-line-title"><img src="/brand/revuelo-logo.png" alt="" />Revuelo</h2>
               <p>Nuestra línea de indumentaria y accesorios elaborada con más de un 80 % de materiales reutilizados. Diseñamos prendas duraderas a partir de procesos de suprarreciclaje y producción cooperativa.</p>
             </div>
           </section>
@@ -32,7 +32,7 @@ export default function Page() {
             </div>
             <div className="product-line-copy">
               <p className="eyebrow">MAQUI · CERO DESPERDICIO</p>
-              <h2>Maqui</h2>
+              <h2 className="product-line-title"><img src="/brand/maqui-logo.png" alt="" />Maqui</h2>
               <p>Nuestra línea de accesorios de cero desperdicio en algodón teñido con tintes naturales mediante procesos artesanales respetuosos del ambiente.</p>
             </div>
           </section>
