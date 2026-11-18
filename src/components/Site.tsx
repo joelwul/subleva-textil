@@ -44,11 +44,11 @@ export function Shell({ children }: { children: React.ReactNode }) {
 }
 
 const doors = [
-  { n:"01", title:"Talleres", desc:"Compartí saberes, aprendé técnicas y hacé con tus manos.", href:"/talleres", className:"door-lilac", symbol:"✳" },
-  { n:"02", title:"Servicios", desc:"Desarrollamos tu idea textil desde el diseño hasta la producción.", href:"/servicios", className:"door-sand", symbol:"⌁" },
-  { n:"03", title:"Coworking", desc:"Un espacio equipado para trabajar y desarrollar tus proyectos.", href:"/coworking", className:"door-dark", symbol:"▤" },
-  { n:"04", title:"Punto Verde Textil", desc:"Acercá tus descartes y sumate a nuestra comunidad recicladora.", href:"/punto-verde-textil", className:"door-sage", symbol:"↻" },
-  { n:"05", title:"Productos", desc:"Conocé las líneas Revuelo y Maqui.", href:"/productos", className:"door-lilac", symbol:"◯" },
+  { n:"01", title:"Productos", desc:"Conocé las líneas Revuelo y Maqui.", href:"/productos", className:"door-lilac", symbol:"◯" },
+  { n:"02", title:"Talleres", desc:"Compartí saberes, aprendé técnicas y hacé con tus manos.", href:"/talleres", className:"door-sand", symbol:"✳" },
+  { n:"03", title:"Servicios", desc:"Desarrollamos tu idea textil desde el diseño hasta la producción.", href:"/servicios", className:"door-dark", symbol:"⌁" },
+  { n:"04", title:"Coworking", desc:"Un espacio equipado para trabajar y desarrollar tus proyectos.", href:"/coworking", className:"door-sage", symbol:"▤" },
+  { n:"05", title:"Punto Verde Textil", desc:"Acercá tus descartes y sumate a nuestra comunidad recicladora.", href:"/punto-verde-textil", className:"door-lilac", symbol:"↻" },
 ];
 
 const cards = [
